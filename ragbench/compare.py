@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from ragbench import __version__
 from ragbench.clients import LocalEmbeddingClient, LocalKeywordClient
 from ragbench.eval import compact_rows, evaluate, load_questions, summarize, worst_cases
 from ragbench.html_report import render_comparison_html
@@ -210,6 +211,7 @@ def write_json(runs: list[dict], out: Path, include_answers: bool = False) -> No
 def main() -> int:
     default_chunk_sizes = "120,300,600"
     parser = argparse.ArgumentParser(description="Compare RAG evaluation settings.")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("--questions", required=True, help="Path to question set JSON.")
     parser.add_argument("--docs-dir", default="examples/docs", help="Markdown docs dir.")
     parser.add_argument(

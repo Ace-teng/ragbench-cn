@@ -7,6 +7,7 @@ from pathlib import Path
 from statistics import mean
 from typing import Any
 
+from ragbench import __version__
 from ragbench.clients import (
     LocalEmbeddingClient,
     LocalKeywordClient,
@@ -303,6 +304,7 @@ def require_value(value: str | None, name: str) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Evaluate a RAG QA system with a Chinese question set.")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("--questions", required=True, help="Path to question set JSON.")
     parser.add_argument("--out", required=True, help="Path to Markdown report.")
     parser.add_argument("--json-out", help="Optional path to machine-readable JSON result.")

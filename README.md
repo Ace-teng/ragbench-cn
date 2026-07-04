@@ -251,6 +251,13 @@ See [CHANGELOG.md](CHANGELOG.md) and [docs/v0_2_checklist.md](docs/v0_2_checklis
 python -m unittest discover -s tests
 ```
 
+Check CLI version:
+
+```powershell
+ragbench-eval --version
+ragbench-compare --version
+```
+
 ## Roadmap
 
 - Run a real RAGFlow smoke test.
