@@ -208,7 +208,7 @@ ragbench-eval --client ragflow --questions examples/questions_zh.json --out repo
 - RAGFlow client is wired for non-streaming chat completion.
 - Real RAGFlow smoke test is still pending.
 
-See [CHANGELOG.md](CHANGELOG.md) and [docs/v0_1_checklist.md](docs/v0_1_checklist.md) for release status.
+See [CHANGELOG.md](CHANGELOG.md) and [docs/v0_2_checklist.md](docs/v0_2_checklist.md) for release status.
 
 ## Test
 

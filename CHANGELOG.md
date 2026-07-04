@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.2.0 - 2026-07-04
 
 ### Added
 
@@ -21,6 +21,10 @@
 - Checked-in keyword vs embedding client comparison report.
 - Paraphrase question set for testing semantic retrieval.
 - Checked-in paraphrase keyword vs embedding comparison report.
+
+### Changed
+
+- Clarified retrieval precision@k and recall@k aggregation when a question has no returned chunks.
 
 ## v0.1.0 - 2026-07-04
 
