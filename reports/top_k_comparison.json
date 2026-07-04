@@ -6,28 +6,17 @@
       "top_k": 1,
       "summary": {
         "questions": 20,
-        "citation_hit_rate": 1.0,
+        "citation_hit_rate": 0.9,
         "average_keyword_recall": 0.4125,
-        "average_retrieval_precision_at_k": 1.0,
+        "average_retrieval_precision_at_k": 0.9,
         "average_latency_ms": 0.02,
         "failure_counts": {
-          "keyword_missing": 9,
-          "ok": 11
+          "keyword_missing": 8,
+          "ok": 10,
+          "retrieval_miss": 2
         }
       },
       "worst_cases": [
-        {
-          "id": "q018",
-          "question": "RAG 中 prompt 的作用是什么？",
-          "citations": [
-            "rag_basics.md"
-          ],
-          "keyword_recall": 0.0,
-          "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.01,
-          "failure_type": "keyword_missing"
-        },
         {
           "id": "q004",
           "question": "embedding 在 RAG 系统中起什么作用？",
@@ -51,6 +40,18 @@
           "retrieval_precision_at_k": 1.0,
           "latency_ms": 0.02,
           "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q006",
+          "question": "top-k 变大会怎样影响回答质量？",
+          "citations": [
+            "retrieval_noise.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": false,
+          "retrieval_precision_at_k": 0.0,
+          "latency_ms": 0.02,
+          "failure_type": "retrieval_miss"
         }
       ]
     },
@@ -61,8 +62,8 @@
       "summary": {
         "questions": 20,
         "citation_hit_rate": 1.0,
-        "average_keyword_recall": 0.7125,
-        "average_retrieval_precision_at_k": 1.0,
+        "average_keyword_recall": 0.6625,
+        "average_retrieval_precision_at_k": 0.817,
         "average_latency_ms": 0.02,
         "failure_counts": {
           "keyword_missing": 2,
@@ -95,15 +96,16 @@
           "failure_type": "keyword_missing"
         },
         {
-          "id": "q007",
-          "question": "rerank 的作用是什么？",
+          "id": "q003",
+          "question": "chunk size 过小会带来什么问题？",
           "citations": [
-            "rag_basics.md"
+            "rag_basics.md",
+            "retrieval_noise.md"
           ],
           "keyword_recall": 0.5,
           "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.01,
+          "retrieval_precision_at_k": 0.33,
+          "latency_ms": 0.02,
           "failure_type": "ok"
         }
       ]
@@ -115,8 +117,8 @@
       "summary": {
         "questions": 20,
         "citation_hit_rate": 1.0,
-        "average_keyword_recall": 0.7875,
-        "average_retrieval_precision_at_k": 1.0,
+        "average_keyword_recall": 0.7625,
+        "average_retrieval_precision_at_k": 0.8,
         "average_latency_ms": 0.02,
         "failure_counts": {
           "ok": 19,
@@ -140,12 +142,13 @@
           "id": "q007",
           "question": "rerank 的作用是什么？",
           "citations": [
-            "rag_basics.md"
+            "rag_basics.md",
+            "retrieval_noise.md"
           ],
           "keyword_recall": 0.5,
           "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.01,
+          "retrieval_precision_at_k": 0.8,
+          "latency_ms": 0.02,
           "failure_type": "ok"
         },
         {

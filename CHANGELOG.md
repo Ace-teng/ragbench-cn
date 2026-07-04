@@ -10,6 +10,7 @@
 - HTML report documentation.
 - Retrieval precision@k metric for clients that return retrieved chunks.
 - Retrieved chunk metadata in the local keyword baseline.
+- Retrieval noise example document for precision@k experiments.
 
 ## v0.1.0 - 2026-07-04
 

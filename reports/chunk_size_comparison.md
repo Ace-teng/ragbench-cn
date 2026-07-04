@@ -4,9 +4,9 @@
 
 | Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Latency ms | Failure Counts |
 | --- | ---: | ---: | ---: | ---: | --- |
-| chunk_size=120 | 1.00 | 0.66 | 1.00 | 0.03 | keyword_missing=3, ok=17 |
-| chunk_size=300 | 1.00 | 0.71 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
-| chunk_size=600 | 1.00 | 0.71 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
+| chunk_size=120 | 1.00 | 0.64 | 0.78 | 0.03 | keyword_missing=4, ok=16 |
+| chunk_size=300 | 1.00 | 0.66 | 0.82 | 0.02 | keyword_missing=2, ok=18 |
+| chunk_size=600 | 1.00 | 0.66 | 0.82 | 0.03 | keyword_missing=2, ok=18 |
 
 ## How To Read
 
@@ -25,7 +25,7 @@
 
 | ID | Keyword Recall | Citation Hit | Failure Type | Question |
 | --- | ---: | --- | --- | --- |
-| q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
+| q003 | 0.25 | True | keyword_missing | chunk size 过小会带来什么问题？ |
 | q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
 | q017 | 0.25 | True | keyword_missing | 为什么 RAG 系统需要失败 case 分析？ |
 
@@ -33,9 +33,9 @@
 
 | ID | Keyword Recall | Citation Hit | Failure Type | Question |
 | --- | ---: | --- | --- | --- |
-| q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
 | q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
-| q007 | 0.50 | True | ok | rerank 的作用是什么？ |
+| q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
+| q003 | 0.50 | True | ok | chunk size 过小会带来什么问题？ |
 
 ### chunk_size=600
 
@@ -43,4 +43,4 @@
 | --- | ---: | --- | --- | --- |
 | q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
 | q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
-| q007 | 0.50 | True | ok | rerank 的作用是什么？ |
+| q003 | 0.50 | True | ok | chunk size 过小会带来什么问题？ |

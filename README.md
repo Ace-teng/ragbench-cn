@@ -78,14 +78,15 @@ Top-k comparison on the local Markdown baseline:
 
 | Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Latency ms | Failure Counts |
 | --- | ---: | ---: | ---: | ---: | --- |
-| top_k=1 | 1.00 | 0.41 | 1.00 | 0.02 | keyword_missing=9, ok=11 |
-| top_k=3 | 1.00 | 0.71 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
-| top_k=5 | 1.00 | 0.79 | 1.00 | 0.02 | keyword_missing=1, ok=19 |
+| top_k=1 | 0.90 | 0.41 | 0.90 | 0.02 | keyword_missing=8, ok=10, retrieval_miss=2 |
+| top_k=3 | 1.00 | 0.66 | 0.82 | 0.02 | keyword_missing=2, ok=18 |
+| top_k=5 | 1.00 | 0.76 | 0.80 | 0.02 | keyword_missing=1, ok=19 |
 
 Interpretation:
 
 - Larger `top-k` returns more chunks.
 - More chunks may improve keyword coverage.
+- More chunks may also reduce precision@k when similar but non-gold documents are retrieved.
 - In real RAG systems, larger `top-k` may also add noise, context cost, and latency.
 
 ## Question Format

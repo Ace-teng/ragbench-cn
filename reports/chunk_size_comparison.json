@@ -8,24 +8,25 @@
       "summary": {
         "questions": 20,
         "citation_hit_rate": 1.0,
-        "average_keyword_recall": 0.6625,
-        "average_retrieval_precision_at_k": 1.0,
+        "average_keyword_recall": 0.6375,
+        "average_retrieval_precision_at_k": 0.7835,
         "average_latency_ms": 0.03,
         "failure_counts": {
-          "keyword_missing": 3,
-          "ok": 17
+          "keyword_missing": 4,
+          "ok": 16
         }
       },
       "worst_cases": [
         {
-          "id": "q001",
-          "question": "RAG 的基本流程是什么？",
+          "id": "q003",
+          "question": "chunk size 过小会带来什么问题？",
           "citations": [
+            "retrieval_noise.md",
             "rag_basics.md"
           ],
           "keyword_recall": 0.25,
           "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
+          "retrieval_precision_at_k": 0.33,
           "latency_ms": 0.03,
           "failure_type": "keyword_missing"
         },
@@ -63,8 +64,8 @@
       "summary": {
         "questions": 20,
         "citation_hit_rate": 1.0,
-        "average_keyword_recall": 0.7125,
-        "average_retrieval_precision_at_k": 1.0,
+        "average_keyword_recall": 0.6625,
+        "average_retrieval_precision_at_k": 0.817,
         "average_latency_ms": 0.02,
         "failure_counts": {
           "keyword_missing": 2,
@@ -72,18 +73,6 @@
         }
       },
       "worst_cases": [
-        {
-          "id": "q001",
-          "question": "RAG 的基本流程是什么？",
-          "citations": [
-            "rag_basics.md"
-          ],
-          "keyword_recall": 0.25,
-          "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.02,
-          "failure_type": "keyword_missing"
-        },
         {
           "id": "q011",
           "question": "如何判断一次 RAG 回答是检索失败？",
@@ -97,15 +86,28 @@
           "failure_type": "keyword_missing"
         },
         {
-          "id": "q007",
-          "question": "rerank 的作用是什么？",
+          "id": "q001",
+          "question": "RAG 的基本流程是什么？",
           "citations": [
             "rag_basics.md"
           ],
-          "keyword_recall": 0.5,
+          "keyword_recall": 0.25,
           "citation_hit": true,
           "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.01,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q003",
+          "question": "chunk size 过小会带来什么问题？",
+          "citations": [
+            "rag_basics.md",
+            "retrieval_noise.md"
+          ],
+          "keyword_recall": 0.5,
+          "citation_hit": true,
+          "retrieval_precision_at_k": 0.33,
+          "latency_ms": 0.02,
           "failure_type": "ok"
         }
       ]
@@ -118,9 +120,9 @@
       "summary": {
         "questions": 20,
         "citation_hit_rate": 1.0,
-        "average_keyword_recall": 0.7125,
-        "average_retrieval_precision_at_k": 1.0,
-        "average_latency_ms": 0.02,
+        "average_keyword_recall": 0.6625,
+        "average_retrieval_precision_at_k": 0.817,
+        "average_latency_ms": 0.03,
         "failure_counts": {
           "keyword_missing": 2,
           "ok": 18
@@ -136,7 +138,7 @@
           "keyword_recall": 0.25,
           "citation_hit": true,
           "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.02,
+          "latency_ms": 0.03,
           "failure_type": "keyword_missing"
         },
         {
@@ -148,19 +150,20 @@
           "keyword_recall": 0.25,
           "citation_hit": true,
           "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.02,
+          "latency_ms": 0.03,
           "failure_type": "keyword_missing"
         },
         {
-          "id": "q007",
-          "question": "rerank 的作用是什么？",
+          "id": "q003",
+          "question": "chunk size 过小会带来什么问题？",
           "citations": [
-            "rag_basics.md"
+            "rag_basics.md",
+            "retrieval_noise.md"
           ],
           "keyword_recall": 0.5,
           "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "latency_ms": 0.01,
+          "retrieval_precision_at_k": 0.33,
+          "latency_ms": 0.02,
           "failure_type": "ok"
         }
       ]

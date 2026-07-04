@@ -2,6 +2,8 @@
 
 This directory contains generated example reports.
 
+The example documents include `retrieval_noise.md`, a similar but non-gold source used to demonstrate how precision@k can reveal retrieval noise.
+
 ## Files
 
 | File | Purpose |

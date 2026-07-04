@@ -2,9 +2,9 @@
   "summary": {
     "questions": 20,
     "citation_hit_rate": 1.0,
-    "average_keyword_recall": 0.7125,
-    "average_retrieval_precision_at_k": 1.0,
-    "average_latency_ms": 0.02,
+    "average_keyword_recall": 0.6625,
+    "average_retrieval_precision_at_k": 0.817,
+    "average_latency_ms": 0.03,
     "failure_counts": {
       "keyword_missing": 2,
       "ok": 18
@@ -20,7 +20,7 @@
       "keyword_recall": 0.25,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "latency_ms": 0.03,
       "failure_type": "keyword_missing"
     },
     {
@@ -32,36 +32,38 @@
       "keyword_recall": 0.25,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.03,
+      "latency_ms": 0.04,
       "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q003",
+      "question": "chunk size 过小会带来什么问题？",
+      "citations": [
+        "rag_basics.md",
+        "retrieval_noise.md"
+      ],
+      "keyword_recall": 0.5,
+      "citation_hit": true,
+      "retrieval_precision_at_k": 0.33,
+      "latency_ms": 0.02,
+      "failure_type": "ok"
     },
     {
       "id": "q007",
       "question": "rerank 的作用是什么？",
       "citations": [
-        "rag_basics.md"
+        "rag_basics.md",
+        "retrieval_noise.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
+      "retrieval_precision_at_k": 0.67,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
     {
       "id": "q010",
       "question": "关键词召回率有什么局限？",
-      "citations": [
-        "rag_basics.md"
-      ],
-      "keyword_recall": 0.5,
-      "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
-      "failure_type": "ok"
-    },
-    {
-      "id": "q013",
-      "question": "RAG 的评估指标应该包含哪些方面？",
       "citations": [
         "rag_basics.md"
       ],
@@ -82,18 +84,19 @@
       "keyword_recall": 0.25,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.03,
+      "latency_ms": 0.04,
       "failure_type": "keyword_missing"
     },
     {
       "id": "q002",
       "question": "RAG 中 chunk size 过大会带来什么问题？",
       "citations": [
-        "rag_basics.md"
+        "rag_basics.md",
+        "retrieval_noise.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
+      "retrieval_precision_at_k": 0.67,
       "latency_ms": 0.03,
       "failure_type": "ok"
     },
@@ -101,11 +104,12 @@
       "id": "q003",
       "question": "chunk size 过小会带来什么问题？",
       "citations": [
-        "rag_basics.md"
+        "rag_basics.md",
+        "retrieval_noise.md"
       ],
-      "keyword_recall": 0.75,
+      "keyword_recall": 0.5,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
+      "retrieval_precision_at_k": 0.33,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -113,11 +117,12 @@
       "id": "q004",
       "question": "embedding 在 RAG 系统中起什么作用？",
       "citations": [
-        "rag_basics.md"
+        "rag_basics.md",
+        "retrieval_noise.md"
       ],
-      "keyword_recall": 1.0,
+      "keyword_recall": 0.75,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
+      "retrieval_precision_at_k": 0.67,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -130,30 +135,32 @@
       "keyword_recall": 0.75,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "latency_ms": 0.03,
       "failure_type": "ok"
     },
     {
       "id": "q006",
       "question": "top-k 变大会怎样影响回答质量？",
       "citations": [
+        "retrieval_noise.md",
         "rag_basics.md"
       ],
-      "keyword_recall": 1.0,
+      "keyword_recall": 0.75,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "retrieval_precision_at_k": 0.33,
+      "latency_ms": 0.03,
       "failure_type": "ok"
     },
     {
       "id": "q007",
       "question": "rerank 的作用是什么？",
       "citations": [
-        "rag_basics.md"
+        "rag_basics.md",
+        "retrieval_noise.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
+      "retrieval_precision_at_k": 0.67,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -202,7 +209,7 @@
       "keyword_recall": 0.25,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "latency_ms": 0.03,
       "failure_type": "keyword_missing"
     },
     {
@@ -226,7 +233,7 @@
       "keyword_recall": 0.5,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "latency_ms": 0.03,
       "failure_type": "ok"
     },
     {
@@ -238,7 +245,7 @@
       "keyword_recall": 1.0,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "latency_ms": 0.03,
       "failure_type": "ok"
     },
     {
@@ -250,19 +257,20 @@
       "keyword_recall": 0.75,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "latency_ms": 0.03,
       "failure_type": "ok"
     },
     {
       "id": "q016",
       "question": "RAG 和直接把问题发给大模型有什么区别？",
       "citations": [
-        "rag_basics.md"
+        "rag_basics.md",
+        "retrieval_noise.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "retrieval_precision_at_k": 0.67,
+      "latency_ms": 0.04,
       "failure_type": "ok"
     },
     {
@@ -281,11 +289,12 @@
       "id": "q018",
       "question": "RAG 中 prompt 的作用是什么？",
       "citations": [
+        "retrieval_noise.md",
         "rag_basics.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
+      "retrieval_precision_at_k": 0.67,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -293,11 +302,12 @@
       "id": "q019",
       "question": "什么情况下应该调整 chunk 策略？",
       "citations": [
-        "rag_basics.md"
+        "rag_basics.md",
+        "retrieval_noise.md"
       ],
-      "keyword_recall": 1.0,
+      "keyword_recall": 0.75,
       "citation_hit": true,
-      "retrieval_precision_at_k": 1.0,
+      "retrieval_precision_at_k": 0.33,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -310,7 +320,7 @@
       "keyword_recall": 0.75,
       "citation_hit": true,
       "retrieval_precision_at_k": 1.0,
-      "latency_ms": 0.02,
+      "latency_ms": 0.03,
       "failure_type": "ok"
     }
   ]
