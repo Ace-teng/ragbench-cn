@@ -19,6 +19,8 @@
 - Client comparison mode for comparing retrieval clients.
 - Diagnosis and retrieval metrics in comparison report worst cases.
 - Checked-in keyword vs embedding client comparison report.
+- Paraphrase question set for testing semantic retrieval.
+- Checked-in paraphrase keyword vs embedding comparison report.
 
 ## v0.1.0 - 2026-07-04
 

@@ -36,6 +36,8 @@ RAGBench-CN does not rebuild a RAG platform. It evaluates outputs from RAGFlow, 
 - Retrieval recall@k and retrieved chunk previews
 - Top-k comparison
 - Chunk size comparison
+- Keyword vs embedding client comparison
+- Paraphrase question set for testing semantic retrieval
 - Worst case analysis with diagnosis text
 
 ## Install
@@ -87,7 +89,13 @@ ragbench-compare --mode chunk-size --questions examples/questions_zh.json --docs
 Compare retrieval clients:
 
 ```powershell
-ragbench-compare --mode client --clients local-keyword --questions examples/questions_zh.json --docs-dir examples/docs --top-k 3 --out reports/client_comparison.md --json-out reports/client_comparison.json --html-out reports/client_comparison.html
+ragbench-compare --mode client --clients local-keyword,local-embedding --questions examples/questions_zh.json --docs-dir examples/docs --top-k 3 --out reports/client_comparison.md --json-out reports/client_comparison.json --html-out reports/client_comparison.html
+```
+
+Compare keyword and embedding retrieval on paraphrased questions:
+
+```powershell
+ragbench-compare --mode client --clients local-keyword,local-embedding --questions examples/questions_paraphrase.json --docs-dir examples/docs --top-k 3 --out reports/paraphrase_client_comparison.md --json-out reports/paraphrase_client_comparison.json --html-out reports/paraphrase_client_comparison.html
 ```
 
 Generated examples are listed in [reports/README.md](reports/README.md).
@@ -108,6 +116,20 @@ Interpretation:
 - More chunks may improve keyword coverage.
 - More chunks may also reduce precision@k when similar but non-gold documents are retrieved.
 - In real RAG systems, larger `top-k` may also add noise, context cost, and latency.
+
+Paraphrase comparison on the same local documents:
+
+| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Recall@k | Avg Latency ms | Failure Counts |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| local-keyword | 0.33 | 0.17 | 1.00 | 1.00 | 0.01 | empty_answer=4, keyword_missing=1, ok=1 |
+| local-embedding | 1.00 | 0.92 | 0.67 | 1.00 | 13.92 | ok=6 |
+
+Interpretation:
+
+- Keyword retrieval is strong when questions and documents share surface words.
+- Embedding retrieval is more useful when questions are paraphrased or cross-lingual.
+- The lower precision@k for embedding shows that semantic retrieval can still bring similar but noisy chunks.
+- Retrieval precision@k and recall@k are averaged over questions with returned retrieved chunks.
 
 ## Question Format
 
@@ -180,6 +202,8 @@ ragbench-eval --client ragflow --questions examples/questions_zh.json --out repo
 - Markdown / JSON report export works.
 - Top-k and chunk size comparison work.
 - Worst case analysis works.
+- Keyword vs embedding retrieval comparison works.
+- Paraphrase experiment works.
 - OpenAI-compatible client is wired.
 - RAGFlow client is wired for non-streaming chat completion.
 - Real RAGFlow smoke test is still pending.
@@ -197,4 +221,4 @@ python -m unittest discover -s tests
 - Run a real RAGFlow smoke test.
 - Improve citation extraction for different RAGFlow response formats.
 - Add optional LLM-as-judge metrics.
-- Add HTML report or charts.
+- Add charts to HTML reports.

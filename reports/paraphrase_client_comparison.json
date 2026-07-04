@@ -1,0 +1,196 @@
+{
+  "runs": [
+    {
+      "name": "local-keyword",
+      "client": "local-keyword",
+      "top_k": 3,
+      "chunk_size": null,
+      "summary": {
+        "questions": 6,
+        "citation_hit_rate": 0.3333,
+        "average_keyword_recall": 0.1667,
+        "average_retrieval_precision_at_k": 1.0,
+        "average_retrieval_recall_at_k": 1.0,
+        "average_latency_ms": 0.01,
+        "failure_counts": {
+          "ok": 1,
+          "empty_answer": 4,
+          "keyword_missing": 1
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "p003",
+          "question": "What is the role of dense vectors in finding relevant passages?",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [],
+          "keyword_recall": 0.0,
+          "citation_hit": false,
+          "retrieval_precision_at_k": null,
+          "retrieval_recall_at_k": null,
+          "retrieved": [],
+          "latency_ms": 0.01,
+          "failure_type": "empty_answer",
+          "diagnosis": "empty_answer: no answer was returned"
+        },
+        {
+          "id": "p004",
+          "question": "Why is fluent wording not enough to trust an answer from a knowledge-base QA system?",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [],
+          "keyword_recall": 0.0,
+          "citation_hit": false,
+          "retrieval_precision_at_k": null,
+          "retrieval_recall_at_k": null,
+          "retrieved": [],
+          "latency_ms": 0.01,
+          "failure_type": "empty_answer",
+          "diagnosis": "empty_answer: no answer was returned"
+        },
+        {
+          "id": "p006",
+          "question": "How can candidate passages be reordered after the first retrieval step?",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [],
+          "keyword_recall": 0.0,
+          "citation_hit": false,
+          "retrieval_precision_at_k": null,
+          "retrieval_recall_at_k": null,
+          "retrieved": [],
+          "latency_ms": 0.01,
+          "failure_type": "empty_answer",
+          "diagnosis": "empty_answer: no answer was returned"
+        }
+      ]
+    },
+    {
+      "name": "local-embedding",
+      "client": "local-embedding",
+      "top_k": 3,
+      "chunk_size": null,
+      "summary": {
+        "questions": 6,
+        "citation_hit_rate": 1.0,
+        "average_keyword_recall": 0.9167,
+        "average_retrieval_precision_at_k": 0.6683,
+        "average_retrieval_recall_at_k": 1.0,
+        "average_latency_ms": 13.92,
+        "failure_counts": {
+          "ok": 6
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "p002",
+          "question": "Why can giving a model more retrieved passages make the answer worse?",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [
+            "retrieval_noise.md",
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.75,
+          "citation_hit": true,
+          "retrieval_precision_at_k": 0.67,
+          "retrieval_recall_at_k": 1.0,
+          "retrieved": [
+            {
+              "doc": "retrieval_noise.md",
+              "score": 0.4666000008583069,
+              "text_preview": "top-k 变大时，系统返回的候选片段数量更多。这样可能提高召回，也可能让无关 chunk 进入上下文，增加模型阅读负担、上下文成本和响应延迟。"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 0.45739999413490295,
+              "text_preview": "rerank 的作用是在向量检索之后重新排序候选片段。向量检索负责快速召回，rerank 更关注问题和候选片段之间的精细相关性。对于候选片段较多、相似文本较多、专业文档较复杂的场景，rerank 往往能提高最终上下文质量。"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 0.4392000138759613,
+              "text_preview": "离线建库链路负责处理文档。系统会把 PDF、Markdown、网页文本等原始资料解析成纯文本，再按一定规则切成多个 chunk。每个 chunk 会被 embedding 模型转换成向量，并写入向量数据库。为了后续定位答案来源，chunk "
+            }
+          ],
+          "latency_ms": 12.37,
+          "failure_type": "ok",
+          "diagnosis": "ok: answer passed the current lightweight checks"
+        },
+        {
+          "id": "p006",
+          "question": "How can candidate passages be reordered after the first retrieval step?",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [
+            "rag_basics.md",
+            "retrieval_noise.md"
+          ],
+          "keyword_recall": 0.75,
+          "citation_hit": true,
+          "retrieval_precision_at_k": 0.67,
+          "retrieval_recall_at_k": 1.0,
+          "retrieved": [
+            {
+              "doc": "rag_basics.md",
+              "score": 0.5245000123977661,
+              "text_preview": "rerank 的作用是在向量检索之后重新排序候选片段。向量检索负责快速召回，rerank 更关注问题和候选片段之间的精细相关性。对于候选片段较多、相似文本较多、专业文档较复杂的场景，rerank 往往能提高最终上下文质量。"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 0.5214999914169312,
+              "text_preview": "在线问答链路从用户问题开始。系统先把问题转换成向量，再到向量数据库中检索语义相似的候选片段，通常取 top-k 个结果。随后可以使用 rerank 模型对候选片段重新排序，筛出更相关的上下文。最后，系统把问题、检索上下文和回答约束组合成 p"
+            },
+            {
+              "doc": "retrieval_noise.md",
+              "score": 0.39980000257492065,
+              "text_preview": "在真实 RAG 系统里，知识库中经常会存在主题相近但并不直接回答问题的文档。检索器可能把这些相似文档一起返回，导致 top-k 结果中同时包含有用上下文和噪声。"
+            }
+          ],
+          "latency_ms": 13.28,
+          "failure_type": "ok",
+          "diagnosis": "ok: answer passed the current lightweight checks"
+        },
+        {
+          "id": "p005",
+          "question": "What evidence should an interview-ready RAG project keep?",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 1.0,
+          "citation_hit": true,
+          "retrieval_precision_at_k": 1.0,
+          "retrieval_recall_at_k": 1.0,
+          "retrieved": [
+            {
+              "doc": "rag_basics.md",
+              "score": 0.7821000218391418,
+              "text_preview": "一个可面试的 RAG 项目需要留下清晰证据：运行命令、环境配置、测试问题集、评估报告、失败 case、源码阅读笔记和参数对比结果。面试时要能分清平台已有能力和自己的工作：RAGFlow 等平台负责知识库和问答链路，评测工具负责问题集、指标、"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 0.5110999941825867,
+              "text_preview": "评估 RAG 不能只看答案是否流畅。一个回答可能语言自然，但没有引用正确文档，或者覆盖了错误事实。更可靠的评估应包含多个维度：检索是否命中标准文档，回答是否覆盖关键概念，引用是否存在，响应延迟是否可接受，以及失败 case 属于检索失败、引"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 0.49230000376701355,
+              "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
+            }
+          ],
+          "latency_ms": 12.43,
+          "failure_type": "ok",
+          "diagnosis": "ok: answer passed the current lightweight checks"
+        }
+      ]
+    }
+  ]
+}

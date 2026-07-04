@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAGBench-CN Client Comparison</title>
+  <style>body {
+  color: #172033;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  background: #f6f7f9;
+}
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 56px;
+}
+h1, h2, h3 {
+  line-height: 1.2;
+}
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.metric, section {
+  background: #fff;
+  border: 1px solid #dfe3ea;
+  border-radius: 8px;
+}
+.metric {
+  padding: 16px;
+}
+.metric span {
+  color: #5f6b7a;
+  display: block;
+  font-size: 13px;
+}
+.metric strong {
+  display: block;
+  font-size: 28px;
+  margin-top: 6px;
+}
+section {
+  margin-top: 20px;
+  overflow-x: auto;
+  padding: 18px;
+}
+table {
+  border-collapse: collapse;
+  min-width: 760px;
+  width: 100%;
+}
+th, td {
+  border-bottom: 1px solid #e6e9ef;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  color: #4c5968;
+  font-size: 13px;
+}
+.num {
+  text-align: right;
+}
+.ok {
+  color: #137333;
+  font-weight: 600;
+}
+.bad {
+  color: #b3261e;
+  font-weight: 600;
+}</style>
+</head>
+<body>
+  <main>
+
+    <h1>RAGBench-CN Client Comparison</h1>
+    <section>
+      <h2>Summary</h2>
+      <table>
+        <thead>
+          <tr><th>Run</th><th class="num">Citation Hit Rate</th><th class="num">Avg Keyword Recall</th><th class="num">Avg Precision@k</th><th class="num">Avg Recall@k</th><th class="num">Avg Latency ms</th><th>Failure Counts</th></tr>
+        </thead>
+        <tbody><tr><td>local-keyword</td><td class="num">0.33</td><td class="num">0.17</td><td class="num">1.00</td><td class="num">1.00</td><td class="num">0.01</td><td>empty_answer=4, keyword_missing=1, ok=1</td></tr><tr><td>local-embedding</td><td class="num">1.00</td><td class="num">0.92</td><td class="num">0.67</td><td class="num">1.00</td><td class="num">13.92</td><td>ok=6</td></tr></tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Experiment Notes</h2>
+      <ul><li>Client comparison keeps the same questions and docs while changing retrieval strategy.</li><li>`local-keyword` ranks chunks by lexical overlap.</li><li>`local-embedding` ranks chunks by vector similarity and requires the optional embedding dependency.</li></ul>
+    </section>
+    <section>
+      <h2>Worst Cases By Run</h2>
+      
+      <h3>local-keyword</h3>
+      <table>
+        <thead>
+          <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th>Failure Type</th><th>Diagnosis</th><th>Question</th></tr>
+        </thead>
+        <tbody><tr><td>p003</td><td class="num">0.00</td><td class="num">N/A</td><td class="num">N/A</td><td class="bad">False</td><td>empty_answer</td><td>empty_answer: no answer was returned</td><td>What is the role of dense vectors in finding relevant passages?</td></tr><tr><td>p004</td><td class="num">0.00</td><td class="num">N/A</td><td class="num">N/A</td><td class="bad">False</td><td>empty_answer</td><td>empty_answer: no answer was returned</td><td>Why is fluent wording not enough to trust an answer from a knowledge-base QA system?</td></tr><tr><td>p006</td><td class="num">0.00</td><td class="num">N/A</td><td class="num">N/A</td><td class="bad">False</td><td>empty_answer</td><td>empty_answer: no answer was returned</td><td>How can candidate passages be reordered after the first retrieval step?</td></tr></tbody>
+      </table>
+
+      <h3>local-embedding</h3>
+      <table>
+        <thead>
+          <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th>Failure Type</th><th>Diagnosis</th><th>Question</th></tr>
+        </thead>
+        <tbody><tr><td>p002</td><td class="num">0.75</td><td class="num">0.67</td><td class="num">1.00</td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>Why can giving a model more retrieved passages make the answer worse?</td></tr><tr><td>p006</td><td class="num">0.75</td><td class="num">0.67</td><td class="num">1.00</td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>How can candidate passages be reordered after the first retrieval step?</td></tr><tr><td>p005</td><td class="num">1.00</td><td class="num">1.00</td><td class="num">1.00</td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>What evidence should an interview-ready RAG project keep?</td></tr></tbody>
+      </table>
+
+    </section>
+
+  </main>
+</body>
+</html>

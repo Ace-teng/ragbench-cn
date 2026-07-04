@@ -1,0 +1,38 @@
+[
+  {
+    "id": "p001",
+    "question": "How does retrieval augmented generation use external knowledge before answering?",
+    "expected_keywords": ["外部知识库", "检索", "上下文", "生成"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "p002",
+    "question": "Why can giving a model more retrieved passages make the answer worse?",
+    "expected_keywords": ["top-k", "噪声", "上下文", "延迟"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "p003",
+    "question": "What is the role of dense vectors in finding relevant passages?",
+    "expected_keywords": ["embedding", "向量", "语义", "相似度"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "p004",
+    "question": "Why is fluent wording not enough to trust an answer from a knowledge-base QA system?",
+    "expected_keywords": ["流畅", "引用", "正确文档", "事实"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "p005",
+    "question": "What evidence should an interview-ready RAG project keep?",
+    "expected_keywords": ["运行命令", "评估报告", "失败", "源码"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "p006",
+    "question": "How can candidate passages be reordered after the first retrieval step?",
+    "expected_keywords": ["rerank", "重排序", "候选", "相关性"],
+    "gold_doc": "rag_basics.md"
+  }
+]

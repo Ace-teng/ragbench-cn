@@ -21,6 +21,9 @@ The example documents include `retrieval_noise.md`, a similar but non-gold sourc
 | `client_comparison.md` | Comparison report for retrieval clients. |
 | `client_comparison.json` | Machine-readable client comparison result. |
 | `client_comparison.html` | Browser-friendly client comparison report. |
+| `paraphrase_client_comparison.md` | Keyword vs embedding comparison on paraphrased questions. |
+| `paraphrase_client_comparison.json` | Machine-readable paraphrase comparison result. |
+| `paraphrase_client_comparison.html` | Browser-friendly paraphrase comparison report. |
 
 ## Regenerate
 
@@ -37,4 +40,11 @@ To regenerate the checked-in keyword vs embedding client report, install optiona
 ```powershell
 pip install -e .[embedding]
 ragbench-compare --mode client --clients local-keyword,local-embedding --questions examples/questions_zh.json --docs-dir examples/docs --top-k 3 --out reports/client_comparison.md --json-out reports/client_comparison.json --html-out reports/client_comparison.html
+```
+
+To regenerate the paraphrase experiment:
+
+```powershell
+pip install -e .[embedding]
+ragbench-compare --mode client --clients local-keyword,local-embedding --questions examples/questions_paraphrase.json --docs-dir examples/docs --top-k 3 --out reports/paraphrase_client_comparison.md --json-out reports/paraphrase_client_comparison.json --html-out reports/paraphrase_client_comparison.html
 ```
