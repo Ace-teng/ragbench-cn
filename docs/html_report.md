@@ -24,6 +24,7 @@ It uses the Python standard library only:
 
 - `html.escape` escapes user-controlled text.
 - Inline CSS keeps the generated file self-contained.
+- Metric bars make citation hit rate, keyword recall, precision@k, and recall@k easier to scan.
 - The CLI writes HTML only when `--html-out` is provided.
 
 ## Interview Notes
@@ -36,3 +37,5 @@ This feature shows separation of concerns:
 - HTML renderer produces browser-friendly output.
 
 The important security detail is escaping text before putting it into HTML. Question text, run names, failure types, and notes can contain special characters, so they should not be inserted as raw HTML.
+
+The metric bars are visual aids only. The numeric values remain the source of truth.

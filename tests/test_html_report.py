@@ -33,6 +33,7 @@ class HtmlReportTest(unittest.TestCase):
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", html)
         self.assertNotIn("<script>alert(1)</script>", html)
         self.assertIn("&lt;b&gt;bad&lt;/b&gt;", html)
+        self.assertIn("metric-bar", html)
 
     def test_comparison_html_contains_run_summary(self) -> None:
         runs = [
@@ -70,6 +71,7 @@ class HtmlReportTest(unittest.TestCase):
         self.assertIn("ok=2", html)
         self.assertIn("keyword_missing: answer missed expected key concepts", html)
         self.assertIn("&lt;script&gt;bad()&lt;/script&gt;", html)
+        self.assertIn("width: 50%", html)
 
 
 if __name__ == "__main__":

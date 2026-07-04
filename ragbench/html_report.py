@@ -44,6 +44,18 @@ h1, h2, h3 {
   font-size: 28px;
   margin-top: 6px;
 }
+.metric-bar {
+  background: #e8edf3;
+  border-radius: 999px;
+  height: 8px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.metric-bar span {
+  background: #2563eb;
+  display: block;
+  height: 100%;
+}
 section {
   margin-top: 20px;
   overflow-x: auto;
@@ -66,6 +78,13 @@ th {
 }
 .num {
   text-align: right;
+}
+.rate-cell {
+  min-width: 120px;
+}
+.rate-cell .metric-bar {
+  margin-left: auto;
+  max-width: 96px;
 }
 .ok {
   color: #137333;
@@ -104,26 +123,36 @@ def _failure_counts_text(summary: dict) -> str:
     return ", ".join(f"{escape(str(key))}={value}" for key, value in sorted(counts.items()))
 
 
+def _bar(value: float | None) -> str:
+    if value is None:
+        return ""
+    percent = round(max(0.0, min(1.0, value)) * 100)
+    return f"<div class=\"metric-bar\" aria-hidden=\"true\"><span style=\"width: {percent}%\"></span></div>"
+
+
+def _metric_card(label: str, value: str, bar_value: float | None = None) -> str:
+    return (
+        f"<div class=\"metric\"><span>{escape(label)}</span><strong>{escape(value)}</strong>"
+        f"{_bar(bar_value)}</div>"
+    )
+
+
+def _rate_cell(value: float | None) -> str:
+    if value is None:
+        return "<td class=\"num\">N/A</td>"
+    return f"<td class=\"num rate-cell\">{value:.2f}{_bar(value)}</td>"
+
+
 def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
     detail_rows = []
     for row in rows:
         citation_class = "ok" if row["citation_hit"] else "bad"
-        precision = (
-            f"{row['retrieval_precision_at_k']:.2f}"
-            if row.get("retrieval_precision_at_k") is not None
-            else "N/A"
-        )
-        recall = (
-            f"{row['retrieval_recall_at_k']:.2f}"
-            if row.get("retrieval_recall_at_k") is not None
-            else "N/A"
-        )
         detail_rows.append(
             "<tr>"
             f"<td>{escape(str(row['id']))}</td>"
-            f"<td class=\"num\">{row['keyword_recall']:.2f}</td>"
-            f"<td class=\"num\">{precision}</td>"
-            f"<td class=\"num\">{recall}</td>"
+            f"{_rate_cell(row['keyword_recall'])}"
+            f"{_rate_cell(row.get('retrieval_precision_at_k'))}"
+            f"{_rate_cell(row.get('retrieval_recall_at_k'))}"
             f"<td class=\"{citation_class}\">{row['citation_hit']}</td>"
             f"<td class=\"num\">{row['latency_ms']:.2f}</td>"
             f"<td>{escape(str(row['failure_type']))}</td>"
@@ -150,12 +179,12 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
     <h1>RAGBench-CN Evaluation Report</h1>
     <p>Client: <strong>{escape(client_name)}</strong></p>
     <div class="summary">
-      <div class="metric"><span>Questions</span><strong>{summary['questions']}</strong></div>
-      <div class="metric"><span>Citation Hit Rate</span><strong>{summary['citation_hit_rate']:.2f}</strong></div>
-      <div class="metric"><span>Avg Keyword Recall</span><strong>{summary['average_keyword_recall']:.2f}</strong></div>
-      <div class="metric"><span>Avg Precision@k</span><strong>{average_precision}</strong></div>
-      <div class="metric"><span>Avg Recall@k</span><strong>{average_recall}</strong></div>
-      <div class="metric"><span>Avg Latency</span><strong>{summary['average_latency_ms']:.2f} ms</strong></div>
+      {_metric_card("Questions", str(summary['questions']))}
+      {_metric_card("Citation Hit Rate", f"{summary['citation_hit_rate']:.2f}", summary['citation_hit_rate'])}
+      {_metric_card("Avg Keyword Recall", f"{summary['average_keyword_recall']:.2f}", summary['average_keyword_recall'])}
+      {_metric_card("Avg Precision@k", average_precision, summary['average_retrieval_precision_at_k'])}
+      {_metric_card("Avg Recall@k", average_recall, summary['average_retrieval_recall_at_k'])}
+      {_metric_card("Avg Latency", f"{summary['average_latency_ms']:.2f} ms")}
     </div>
     <section>
       <h2>Failure Types</h2>
@@ -182,46 +211,26 @@ def render_comparison_html(runs: list[dict], title: str, notes: list[str]) -> st
     worst_case_sections = []
     for run in runs:
         summary = run["summary"]
-        precision = (
-            f"{summary['average_retrieval_precision_at_k']:.2f}"
-            if summary.get("average_retrieval_precision_at_k") is not None
-            else "N/A"
-        )
-        recall = (
-            f"{summary['average_retrieval_recall_at_k']:.2f}"
-            if summary.get("average_retrieval_recall_at_k") is not None
-            else "N/A"
-        )
         run_rows.append(
             "<tr>"
             f"<td>{escape(str(run['name']))}</td>"
-            f"<td class=\"num\">{summary['citation_hit_rate']:.2f}</td>"
-            f"<td class=\"num\">{summary['average_keyword_recall']:.2f}</td>"
-            f"<td class=\"num\">{precision}</td>"
-            f"<td class=\"num\">{recall}</td>"
+            f"{_rate_cell(summary['citation_hit_rate'])}"
+            f"{_rate_cell(summary['average_keyword_recall'])}"
+            f"{_rate_cell(summary.get('average_retrieval_precision_at_k'))}"
+            f"{_rate_cell(summary.get('average_retrieval_recall_at_k'))}"
             f"<td class=\"num\">{summary['average_latency_ms']:.2f}</td>"
             f"<td>{_failure_counts_text(summary)}</td>"
             "</tr>"
         )
         worst_rows = []
         for row in run.get("worst_cases", []):
-            precision = (
-                f"{row['retrieval_precision_at_k']:.2f}"
-                if row.get("retrieval_precision_at_k") is not None
-                else "N/A"
-            )
-            recall = (
-                f"{row['retrieval_recall_at_k']:.2f}"
-                if row.get("retrieval_recall_at_k") is not None
-                else "N/A"
-            )
             citation_class = "ok" if row.get("citation_hit") else "bad"
             worst_rows.append(
                 "<tr>"
                 f"<td>{escape(str(row['id']))}</td>"
-                f"<td class=\"num\">{row['keyword_recall']:.2f}</td>"
-                f"<td class=\"num\">{precision}</td>"
-                f"<td class=\"num\">{recall}</td>"
+                f"{_rate_cell(row['keyword_recall'])}"
+                f"{_rate_cell(row.get('retrieval_precision_at_k'))}"
+                f"{_rate_cell(row.get('retrieval_recall_at_k'))}"
                 f"<td class=\"{citation_class}\">{row.get('citation_hit')}</td>"
                 f"<td>{escape(str(row.get('failure_type', '')))}</td>"
                 f"<td>{escape(str(row.get('diagnosis', '')))}</td>"

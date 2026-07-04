@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Visual metric bars in HTML reports.
+
 ## v0.2.0 - 2026-07-04
 
 ### Added

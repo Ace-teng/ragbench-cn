@@ -43,6 +43,18 @@ h1, h2, h3 {
   font-size: 28px;
   margin-top: 6px;
 }
+.metric-bar {
+  background: #e8edf3;
+  border-radius: 999px;
+  height: 8px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.metric-bar span {
+  background: #2563eb;
+  display: block;
+  height: 100%;
+}
 section {
   margin-top: 20px;
   overflow-x: auto;
@@ -66,6 +78,13 @@ th {
 .num {
   text-align: right;
 }
+.rate-cell {
+  min-width: 120px;
+}
+.rate-cell .metric-bar {
+  margin-left: auto;
+  max-width: 96px;
+}
 .ok {
   color: #137333;
   font-weight: 600;
@@ -85,7 +104,7 @@ th {
         <thead>
           <tr><th>Run</th><th class="num">Citation Hit Rate</th><th class="num">Avg Keyword Recall</th><th class="num">Avg Precision@k</th><th class="num">Avg Recall@k</th><th class="num">Avg Latency ms</th><th>Failure Counts</th></tr>
         </thead>
-        <tbody><tr><td>top_k=1</td><td class="num">0.90</td><td class="num">0.41</td><td class="num">0.90</td><td class="num">0.90</td><td class="num">0.02</td><td>keyword_missing=8, ok=10, retrieval_miss=2</td></tr><tr><td>top_k=3</td><td class="num">1.00</td><td class="num">0.66</td><td class="num">0.82</td><td class="num">1.00</td><td class="num">0.03</td><td>keyword_missing=2, ok=18</td></tr><tr><td>top_k=5</td><td class="num">1.00</td><td class="num">0.76</td><td class="num">0.80</td><td class="num">1.00</td><td class="num">0.03</td><td>keyword_missing=1, ok=19</td></tr></tbody>
+        <tbody><tr><td>top_k=1</td><td class="num rate-cell">0.90<div class="metric-bar" aria-hidden="true"><span style="width: 90%"></span></div></td><td class="num rate-cell">0.41<div class="metric-bar" aria-hidden="true"><span style="width: 41%"></span></div></td><td class="num rate-cell">0.90<div class="metric-bar" aria-hidden="true"><span style="width: 90%"></span></div></td><td class="num rate-cell">0.90<div class="metric-bar" aria-hidden="true"><span style="width: 90%"></span></div></td><td class="num">0.02</td><td>keyword_missing=8, ok=10, retrieval_miss=2</td></tr><tr><td>top_k=3</td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">0.66<div class="metric-bar" aria-hidden="true"><span style="width: 66%"></span></div></td><td class="num rate-cell">0.82<div class="metric-bar" aria-hidden="true"><span style="width: 82%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num">0.03</td><td>keyword_missing=2, ok=18</td></tr><tr><td>top_k=5</td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">0.76<div class="metric-bar" aria-hidden="true"><span style="width: 76%"></span></div></td><td class="num rate-cell">0.80<div class="metric-bar" aria-hidden="true"><span style="width: 80%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num">0.03</td><td>keyword_missing=1, ok=19</td></tr></tbody>
       </table>
     </section>
     <section>
@@ -100,7 +119,7 @@ th {
         <thead>
           <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th>Failure Type</th><th>Diagnosis</th><th>Question</th></tr>
         </thead>
-        <tbody><tr><td>q004</td><td class="num">0.00</td><td class="num">1.00</td><td class="num">1.00</td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>embedding 在 RAG 系统中起什么作用？</td></tr><tr><td>q017</td><td class="num">0.00</td><td class="num">1.00</td><td class="num">1.00</td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>为什么 RAG 系统需要失败 case 分析？</td></tr><tr><td>q018</td><td class="num">0.25</td><td class="num">0.00</td><td class="num">0.00</td><td class="bad">False</td><td>retrieval_miss</td><td>retrieval_miss: gold source was not retrieved</td><td>RAG 中 prompt 的作用是什么？</td></tr></tbody>
+        <tbody><tr><td>q004</td><td class="num rate-cell">0.00<div class="metric-bar" aria-hidden="true"><span style="width: 0%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>embedding 在 RAG 系统中起什么作用？</td></tr><tr><td>q017</td><td class="num rate-cell">0.00<div class="metric-bar" aria-hidden="true"><span style="width: 0%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>为什么 RAG 系统需要失败 case 分析？</td></tr><tr><td>q018</td><td class="num rate-cell">0.25<div class="metric-bar" aria-hidden="true"><span style="width: 25%"></span></div></td><td class="num rate-cell">0.00<div class="metric-bar" aria-hidden="true"><span style="width: 0%"></span></div></td><td class="num rate-cell">0.00<div class="metric-bar" aria-hidden="true"><span style="width: 0%"></span></div></td><td class="bad">False</td><td>retrieval_miss</td><td>retrieval_miss: gold source was not retrieved</td><td>RAG 中 prompt 的作用是什么？</td></tr></tbody>
       </table>
 
       <h3>top_k=3</h3>
@@ -108,7 +127,7 @@ th {
         <thead>
           <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th>Failure Type</th><th>Diagnosis</th><th>Question</th></tr>
         </thead>
-        <tbody><tr><td>q001</td><td class="num">0.25</td><td class="num">1.00</td><td class="num">1.00</td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>RAG 的基本流程是什么？</td></tr><tr><td>q011</td><td class="num">0.25</td><td class="num">1.00</td><td class="num">1.00</td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>如何判断一次 RAG 回答是检索失败？</td></tr><tr><td>q007</td><td class="num">0.50</td><td class="num">0.67</td><td class="num">1.00</td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>rerank 的作用是什么？</td></tr></tbody>
+        <tbody><tr><td>q011</td><td class="num rate-cell">0.25<div class="metric-bar" aria-hidden="true"><span style="width: 25%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>如何判断一次 RAG 回答是检索失败？</td></tr><tr><td>q001</td><td class="num rate-cell">0.25<div class="metric-bar" aria-hidden="true"><span style="width: 25%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>RAG 的基本流程是什么？</td></tr><tr><td>q007</td><td class="num rate-cell">0.50<div class="metric-bar" aria-hidden="true"><span style="width: 50%"></span></div></td><td class="num rate-cell">0.67<div class="metric-bar" aria-hidden="true"><span style="width: 67%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>rerank 的作用是什么？</td></tr></tbody>
       </table>
 
       <h3>top_k=5</h3>
@@ -116,7 +135,7 @@ th {
         <thead>
           <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th>Failure Type</th><th>Diagnosis</th><th>Question</th></tr>
         </thead>
-        <tbody><tr><td>q011</td><td class="num">0.25</td><td class="num">1.00</td><td class="num">1.00</td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>如何判断一次 RAG 回答是检索失败？</td></tr><tr><td>q007</td><td class="num">0.50</td><td class="num">0.80</td><td class="num">1.00</td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>rerank 的作用是什么？</td></tr><tr><td>q010</td><td class="num">0.50</td><td class="num">1.00</td><td class="num">1.00</td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>关键词召回率有什么局限？</td></tr></tbody>
+        <tbody><tr><td>q011</td><td class="num rate-cell">0.25<div class="metric-bar" aria-hidden="true"><span style="width: 25%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>keyword_missing</td><td>keyword_missing: answer missed expected key concepts</td><td>如何判断一次 RAG 回答是检索失败？</td></tr><tr><td>q007</td><td class="num rate-cell">0.50<div class="metric-bar" aria-hidden="true"><span style="width: 50%"></span></div></td><td class="num rate-cell">0.80<div class="metric-bar" aria-hidden="true"><span style="width: 80%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>rerank 的作用是什么？</td></tr><tr><td>q010</td><td class="num rate-cell">0.50<div class="metric-bar" aria-hidden="true"><span style="width: 50%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="num rate-cell">1.00<div class="metric-bar" aria-hidden="true"><span style="width: 100%"></span></div></td><td class="ok">True</td><td>ok</td><td>ok: answer passed the current lightweight checks</td><td>关键词召回率有什么局限？</td></tr></tbody>
       </table>
 
     </section>
