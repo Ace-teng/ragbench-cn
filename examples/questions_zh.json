@@ -1,0 +1,123 @@
+[
+  {
+    "id": "q001",
+    "question": "RAG 的基本流程是什么？",
+    "expected_keywords": ["检索", "增强", "生成", "知识库"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q002",
+    "question": "RAG 中 chunk size 过大会带来什么问题？",
+    "expected_keywords": ["噪声", "上下文", "召回", "精度"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q003",
+    "question": "chunk size 过小会带来什么问题？",
+    "expected_keywords": ["语义", "上下文", "碎片", "召回"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q004",
+    "question": "embedding 在 RAG 系统中起什么作用？",
+    "expected_keywords": ["向量", "语义", "相似度", "检索"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q005",
+    "question": "向量检索返回的 top-k 是什么意思？",
+    "expected_keywords": ["相似", "片段", "候选", "数量"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q006",
+    "question": "top-k 变大会怎样影响回答质量？",
+    "expected_keywords": ["召回", "噪声", "延迟", "上下文"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q007",
+    "question": "rerank 的作用是什么？",
+    "expected_keywords": ["重排序", "相关性", "候选", "精度"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q008",
+    "question": "RAG 为什么仍然可能出现幻觉？",
+    "expected_keywords": ["检索失败", "上下文", "模型", "幻觉"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q009",
+    "question": "引用命中率能说明什么？",
+    "expected_keywords": ["引用", "来源", "命中", "文档"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q010",
+    "question": "关键词召回率有什么局限？",
+    "expected_keywords": ["关键词", "语义", "同义词", "人工"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q011",
+    "question": "如何判断一次 RAG 回答是检索失败？",
+    "expected_keywords": ["未召回", "相关片段", "gold_doc", "引用"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q012",
+    "question": "如何降低 RAG 系统的回答延迟？",
+    "expected_keywords": ["top-k", "缓存", "模型", "检索"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q013",
+    "question": "RAG 的评估指标应该包含哪些方面？",
+    "expected_keywords": ["召回", "引用", "正确率", "延迟"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q014",
+    "question": "为什么不能只看大模型回答是否流畅？",
+    "expected_keywords": ["流畅", "事实", "来源", "幻觉"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q015",
+    "question": "文档切分时为什么要保留标题或元数据？",
+    "expected_keywords": ["标题", "元数据", "定位", "引用"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q016",
+    "question": "RAG 和直接把问题发给大模型有什么区别？",
+    "expected_keywords": ["外部知识", "检索", "上下文", "更新"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q017",
+    "question": "为什么 RAG 系统需要失败 case 分析？",
+    "expected_keywords": ["定位", "检索", "提示词", "优化"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q018",
+    "question": "RAG 中 prompt 的作用是什么？",
+    "expected_keywords": ["约束", "上下文", "引用", "回答"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q019",
+    "question": "什么情况下应该调整 chunk 策略？",
+    "expected_keywords": ["召回", "上下文", "文档结构", "失败"],
+    "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q020",
+    "question": "一个可面试的 RAG 项目应该留下哪些证据？",
+    "expected_keywords": ["运行记录", "评估报告", "源码", "失败"],
+    "gold_doc": "rag_basics.md"
+  }
+]
+

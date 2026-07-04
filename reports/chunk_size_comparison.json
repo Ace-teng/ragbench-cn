@@ -1,0 +1,157 @@
+{
+  "runs": [
+    {
+      "name": "chunk_size=120",
+      "client": "local-keyword",
+      "top_k": 3,
+      "chunk_size": 120,
+      "summary": {
+        "questions": 20,
+        "citation_hit_rate": 1.0,
+        "average_keyword_recall": 0.6625,
+        "average_latency_ms": 0.03,
+        "failure_counts": {
+          "keyword_missing": 3,
+          "ok": 17
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "q001",
+          "question": "RAG 的基本流程是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q011",
+          "question": "如何判断一次 RAG 回答是检索失败？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q017",
+          "question": "为什么 RAG 系统需要失败 case 分析？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing"
+        }
+      ]
+    },
+    {
+      "name": "chunk_size=300",
+      "client": "local-keyword",
+      "top_k": 3,
+      "chunk_size": 300,
+      "summary": {
+        "questions": 20,
+        "citation_hit_rate": 1.0,
+        "average_keyword_recall": 0.7125,
+        "average_latency_ms": 0.02,
+        "failure_counts": {
+          "keyword_missing": 2,
+          "ok": 18
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "q001",
+          "question": "RAG 的基本流程是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q011",
+          "question": "如何判断一次 RAG 回答是检索失败？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q007",
+          "question": "rerank 的作用是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.5,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "ok"
+        }
+      ]
+    },
+    {
+      "name": "chunk_size=600",
+      "client": "local-keyword",
+      "top_k": 3,
+      "chunk_size": 600,
+      "summary": {
+        "questions": 20,
+        "citation_hit_rate": 1.0,
+        "average_keyword_recall": 0.7125,
+        "average_latency_ms": 0.03,
+        "failure_counts": {
+          "keyword_missing": 2,
+          "ok": 18
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "q001",
+          "question": "RAG 的基本流程是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q011",
+          "question": "如何判断一次 RAG 回答是检索失败？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q007",
+          "question": "rerank 的作用是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.5,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "ok"
+        }
+      ]
+    }
+  ]
+}

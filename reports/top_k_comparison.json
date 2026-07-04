@@ -1,0 +1,154 @@
+{
+  "runs": [
+    {
+      "name": "top_k=1",
+      "client": "local-keyword",
+      "top_k": 1,
+      "summary": {
+        "questions": 20,
+        "citation_hit_rate": 1.0,
+        "average_keyword_recall": 0.4125,
+        "average_latency_ms": 0.02,
+        "failure_counts": {
+          "keyword_missing": 9,
+          "ok": 11
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "q018",
+          "question": "RAG 中 prompt 的作用是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.0,
+          "citation_hit": true,
+          "latency_ms": 0.01,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q004",
+          "question": "embedding 在 RAG 系统中起什么作用？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.0,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q017",
+          "question": "为什么 RAG 系统需要失败 case 分析？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.0,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "keyword_missing"
+        }
+      ]
+    },
+    {
+      "name": "top_k=3",
+      "client": "local-keyword",
+      "top_k": 3,
+      "summary": {
+        "questions": 20,
+        "citation_hit_rate": 1.0,
+        "average_keyword_recall": 0.7125,
+        "average_latency_ms": 0.01,
+        "failure_counts": {
+          "keyword_missing": 2,
+          "ok": 18
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "q001",
+          "question": "RAG 的基本流程是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q011",
+          "question": "如何判断一次 RAG 回答是检索失败？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q007",
+          "question": "rerank 的作用是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.5,
+          "citation_hit": true,
+          "latency_ms": 0.01,
+          "failure_type": "ok"
+        }
+      ]
+    },
+    {
+      "name": "top_k=5",
+      "client": "local-keyword",
+      "top_k": 5,
+      "summary": {
+        "questions": 20,
+        "citation_hit_rate": 1.0,
+        "average_keyword_recall": 0.7875,
+        "average_latency_ms": 0.01,
+        "failure_counts": {
+          "ok": 19,
+          "keyword_missing": 1
+        }
+      },
+      "worst_cases": [
+        {
+          "id": "q011",
+          "question": "如何判断一次 RAG 回答是检索失败？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "latency_ms": 0.02,
+          "failure_type": "keyword_missing"
+        },
+        {
+          "id": "q007",
+          "question": "rerank 的作用是什么？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.5,
+          "citation_hit": true,
+          "latency_ms": 0.01,
+          "failure_type": "ok"
+        },
+        {
+          "id": "q010",
+          "question": "关键词召回率有什么局限？",
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.5,
+          "citation_hit": true,
+          "latency_ms": 0.01,
+          "failure_type": "ok"
+        }
+      ]
+    }
+  ]
+}

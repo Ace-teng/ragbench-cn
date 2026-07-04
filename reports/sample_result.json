@@ -1,0 +1,291 @@
+{
+  "summary": {
+    "questions": 20,
+    "citation_hit_rate": 1.0,
+    "average_keyword_recall": 0.475,
+    "average_latency_ms": 0.0,
+    "failure_counts": {
+      "ok": 12,
+      "keyword_missing": 8
+    }
+  },
+  "worst_cases": [
+    {
+      "id": "q007",
+      "question": "rerank 的作用是什么？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.0,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q014",
+      "question": "为什么不能只看大模型回答是否流畅？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.0,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q004",
+      "question": "embedding 在 RAG 系统中起什么作用？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q005",
+      "question": "向量检索返回的 top-k 是什么意思？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q010",
+      "question": "关键词召回率有什么局限？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    }
+  ],
+  "results": [
+    {
+      "id": "q001",
+      "question": "RAG 的基本流程是什么？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.75,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q002",
+      "question": "RAG 中 chunk size 过大会带来什么问题？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.75,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q003",
+      "question": "chunk size 过小会带来什么问题？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.5,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q004",
+      "question": "embedding 在 RAG 系统中起什么作用？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q005",
+      "question": "向量检索返回的 top-k 是什么意思？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q006",
+      "question": "top-k 变大会怎样影响回答质量？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 1.0,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q007",
+      "question": "rerank 的作用是什么？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.0,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q008",
+      "question": "RAG 为什么仍然可能出现幻觉？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.5,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q009",
+      "question": "引用命中率能说明什么？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.5,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q010",
+      "question": "关键词召回率有什么局限？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q011",
+      "question": "如何判断一次 RAG 回答是检索失败？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.5,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q012",
+      "question": "如何降低 RAG 系统的回答延迟？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.75,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q013",
+      "question": "RAG 的评估指标应该包含哪些方面？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.75,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q014",
+      "question": "为什么不能只看大模型回答是否流畅？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.0,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q015",
+      "question": "文档切分时为什么要保留标题或元数据？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q016",
+      "question": "RAG 和直接把问题发给大模型有什么区别？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.5,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q017",
+      "question": "为什么 RAG 系统需要失败 case 分析？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    },
+    {
+      "id": "q018",
+      "question": "RAG 中 prompt 的作用是什么？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.75,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q019",
+      "question": "什么情况下应该调整 chunk 策略？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.75,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q020",
+      "question": "一个可面试的 RAG 项目应该留下哪些证据？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.25,
+      "citation_hit": true,
+      "latency_ms": 0.0,
+      "failure_type": "keyword_missing"
+    }
+  ]
+}

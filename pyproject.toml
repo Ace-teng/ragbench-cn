@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ragbench-cn"
+version = "0.1.0"
+description = "A lightweight Chinese RAG evaluation toolkit."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.31.0",
+]
+authors = [
+  { name = "Tian Zhiteng" }
+]
+license = { text = "MIT" }
+keywords = ["rag", "evaluation", "llm", "chinese", "retrieval"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-name/ragbench-cn"
+Repository = "https://github.com/your-name/ragbench-cn"
+
+[project.scripts]
+ragbench-eval = "ragbench.eval:main"
+ragbench-compare = "ragbench.compare:main"
+
+[tool.setuptools.packages.find]
+include = ["ragbench*"]
+
