@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- HTML report output for `ragbench-eval` via `--html-out`.
+- HTML comparison report output for `ragbench-compare` via `--html-out`.
+- Example HTML reports.
+- HTML report documentation.
+
 ## v0.1.0 - 2026-07-04
 
 Initial working version of RAGBench-CN.

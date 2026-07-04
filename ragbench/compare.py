@@ -6,6 +6,7 @@ from pathlib import Path
 
 from ragbench.clients import LocalKeywordClient
 from ragbench.eval import compact_rows, evaluate, load_questions, summarize, worst_cases
+from ragbench.html_report import render_comparison_html
 
 
 def parse_int_list(raw: str) -> list[int]:
@@ -150,6 +151,7 @@ def main() -> int:
     parser.add_argument("--chunk-size", default="120,300,600", help="Comma-separated chunk sizes.")
     parser.add_argument("--out", required=True, help="Path to Markdown comparison report.")
     parser.add_argument("--json-out", help="Optional path to machine-readable JSON result.")
+    parser.add_argument("--html-out", help="Optional path to HTML comparison report.")
     parser.add_argument("--include-answers", action="store_true", help="Include full answers in JSON output.")
     args = parser.parse_args()
 
@@ -186,10 +188,16 @@ def main() -> int:
     out.write_text(render_comparison_report(runs, title=title, notes=notes), encoding="utf-8")
     if args.json_out:
         write_json(runs, Path(args.json_out), include_answers=args.include_answers)
+    if args.html_out:
+        html_out = Path(args.html_out)
+        html_out.parent.mkdir(parents=True, exist_ok=True)
+        html_out.write_text(render_comparison_html(runs, title=title, notes=notes), encoding="utf-8")
 
     print(f"Comparison report written to {out}")
     if args.json_out:
         print(f"JSON result written to {args.json_out}")
+    if args.html_out:
+        print(f"HTML report written to {args.html_out}")
     return 0
 
 

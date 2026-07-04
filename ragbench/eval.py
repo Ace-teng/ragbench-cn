@@ -8,6 +8,7 @@ from statistics import mean
 from typing import Any
 
 from ragbench.clients import LocalKeywordClient, MockRagClient, OpenAICompatibleClient, RagFlowClient
+from ragbench.html_report import render_eval_html
 from ragbench.metrics import citation_hit, classify_failure, keyword_recall
 
 
@@ -172,6 +173,7 @@ def main() -> int:
     parser.add_argument("--questions", required=True, help="Path to question set JSON.")
     parser.add_argument("--out", required=True, help="Path to Markdown report.")
     parser.add_argument("--json-out", help="Optional path to machine-readable JSON result.")
+    parser.add_argument("--html-out", help="Optional path to HTML report.")
     parser.add_argument(
         "--client",
         choices=["mock", "local-keyword", "openai-compatible", "ragflow"],
@@ -226,10 +228,16 @@ def main() -> int:
 
     if args.json_out:
         write_json_result(rows, Path(args.json_out), include_answers=args.include_answers)
+    if args.html_out:
+        html_out = Path(args.html_out)
+        html_out.parent.mkdir(parents=True, exist_ok=True)
+        html_out.write_text(render_eval_html(rows, summarize(rows), client_name=client_name), encoding="utf-8")
 
     print(f"Report written to {out}")
     if args.json_out:
         print(f"JSON result written to {args.json_out}")
+    if args.html_out:
+        print(f"HTML report written to {args.html_out}")
     return 0
 
 

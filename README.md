@@ -26,7 +26,7 @@ RAGBench-CN does not rebuild a RAG platform. It evaluates outputs from RAGFlow, 
 ## Features
 
 - Chinese question set format
-- Markdown and JSON reports
+- Markdown, JSON, and HTML reports
 - `mock` client for pipeline validation
 - `local-keyword` client for local Markdown retrieval baseline
 - `openai-compatible` client for compatible `/chat/completions` services
@@ -54,13 +54,13 @@ ragbench-eval --questions examples/questions_zh.json --out reports/sample_report
 Run local Markdown retrieval baseline:
 
 ```powershell
-ragbench-eval --questions examples/questions_zh.json --out reports/local_keyword_report.md --json-out reports/local_keyword_result.json --client local-keyword --docs-dir examples/docs --top-k 3
+ragbench-eval --questions examples/questions_zh.json --out reports/local_keyword_report.md --json-out reports/local_keyword_result.json --html-out reports/local_keyword_report.html --client local-keyword --docs-dir examples/docs --top-k 3
 ```
 
 Compare top-k settings:
 
 ```powershell
-ragbench-compare --questions examples/questions_zh.json --docs-dir examples/docs --top-k 1,3,5 --out reports/top_k_comparison.md --json-out reports/top_k_comparison.json
+ragbench-compare --questions examples/questions_zh.json --docs-dir examples/docs --top-k 1,3,5 --out reports/top_k_comparison.md --json-out reports/top_k_comparison.json --html-out reports/top_k_comparison.html
 ```
 
 Compare chunk sizes:
