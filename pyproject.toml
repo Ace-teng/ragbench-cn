@@ -24,8 +24,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-name/ragbench-cn"
-Repository = "https://github.com/your-name/ragbench-cn"
+Homepage = "https://github.com/Ace-teng/ragbench-cn"
+Repository = "https://github.com/Ace-teng/ragbench-cn"
 
 [project.scripts]
 ragbench-eval = "ragbench.eval:main"
@@ -33,4 +33,3 @@ ragbench-compare = "ragbench.compare:main"
 
 [tool.setuptools.packages.find]
 include = ["ragbench*"]
-
