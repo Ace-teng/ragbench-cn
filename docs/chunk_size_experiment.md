@@ -12,11 +12,11 @@ python -m ragbench.compare --mode chunk-size --questions examples/questions_zh.j
 
 当前 chunk size 对比结果：
 
-| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k |
-| --- | ---: | ---: | ---: |
-| chunk_size=120 | 1.00 | 0.64 | 0.78 |
-| chunk_size=300 | 1.00 | 0.66 | 0.82 |
-| chunk_size=600 | 1.00 | 0.66 | 0.82 |
+| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Recall@k |
+| --- | ---: | ---: | ---: | ---: |
+| chunk_size=120 | 1.00 | 0.64 | 0.78 | 1.00 |
+| chunk_size=300 | 1.00 | 0.66 | 0.82 | 1.00 |
+| chunk_size=600 | 1.00 | 0.66 | 0.82 | 1.00 |
 
 ## How To Read
 

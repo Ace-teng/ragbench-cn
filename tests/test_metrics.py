@@ -1,7 +1,13 @@
 import unittest
 
 from ragbench.eval import worst_cases
-from ragbench.metrics import citation_hit, classify_failure, keyword_recall, retrieval_precision_at_k
+from ragbench.metrics import (
+    citation_hit,
+    classify_failure,
+    keyword_recall,
+    retrieval_precision_at_k,
+    retrieval_recall_at_k,
+)
 
 
 class MetricsTest(unittest.TestCase):
@@ -29,6 +35,17 @@ class MetricsTest(unittest.TestCase):
 
     def test_retrieval_precision_at_k_returns_none_without_retrieved_chunks(self) -> None:
         self.assertIsNone(retrieval_precision_at_k([], "rag_basics.md"))
+
+    def test_retrieval_recall_at_k_detects_gold_doc(self) -> None:
+        retrieved = [
+            {"doc": "other.md"},
+            {"doc": "rag_basics.md"},
+        ]
+        self.assertEqual(retrieval_recall_at_k(retrieved, "rag_basics.md"), 1.0)
+
+    def test_retrieval_recall_at_k_misses_gold_doc(self) -> None:
+        retrieved = [{"doc": "other.md"}]
+        self.assertEqual(retrieval_recall_at_k(retrieved, "rag_basics.md"), 0.0)
 
     def test_classify_failure_retrieval_miss(self) -> None:
         self.assertEqual(classify_failure(0.25, False, "partial answer"), "retrieval_miss")

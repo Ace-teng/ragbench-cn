@@ -11,6 +11,7 @@ class HtmlReportTest(unittest.TestCase):
                 "question": "<script>alert(1)</script>",
                 "keyword_recall": 0.5,
                 "retrieval_precision_at_k": None,
+                "retrieval_recall_at_k": None,
                 "citation_hit": False,
                 "latency_ms": 1.2,
                 "failure_type": "keyword_missing",
@@ -21,6 +22,7 @@ class HtmlReportTest(unittest.TestCase):
             "citation_hit_rate": 0,
             "average_keyword_recall": 0.5,
             "average_retrieval_precision_at_k": None,
+            "average_retrieval_recall_at_k": None,
             "average_latency_ms": 1.2,
             "failure_counts": {"keyword_missing": 1},
         }
@@ -38,6 +40,7 @@ class HtmlReportTest(unittest.TestCase):
                     "citation_hit_rate": 1,
                     "average_keyword_recall": 0.75,
                     "average_retrieval_precision_at_k": 0.5,
+                    "average_retrieval_recall_at_k": 1,
                     "average_latency_ms": 2.3,
                     "failure_counts": {"ok": 2},
                 },
@@ -49,6 +52,7 @@ class HtmlReportTest(unittest.TestCase):
         self.assertIn("Top-k Report", html)
         self.assertIn("top_k=3", html)
         self.assertIn("0.50", html)
+        self.assertIn("1.00", html)
         self.assertIn("ok=2", html)
 
 

@@ -71,8 +71,8 @@ def render_comparison_report(runs: list[dict], title: str, notes: list[str]) -> 
         "",
         "## Summary",
         "",
-        "| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Latency ms | Failure Counts |",
-        "| --- | ---: | ---: | ---: | ---: | --- |",
+        "| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Recall@k | Avg Latency ms | Failure Counts |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     for run in runs:
         summary = run["summary"]
@@ -80,13 +80,18 @@ def render_comparison_report(runs: list[dict], title: str, notes: list[str]) -> 
             f"{key}={value}" for key, value in sorted(summary["failure_counts"].items())
         )
         lines.append(
-            "| {name} | {citation:.2f} | {keyword:.2f} | {precision} | {latency:.2f} | {failures} |".format(
+            "| {name} | {citation:.2f} | {keyword:.2f} | {precision} | {recall} | {latency:.2f} | {failures} |".format(
                 name=run["name"],
                 citation=summary["citation_hit_rate"],
                 keyword=summary["average_keyword_recall"],
                 precision=(
                     f"{summary['average_retrieval_precision_at_k']:.2f}"
                     if summary.get("average_retrieval_precision_at_k") is not None
+                    else "N/A"
+                ),
+                recall=(
+                    f"{summary['average_retrieval_recall_at_k']:.2f}"
+                    if summary.get("average_retrieval_recall_at_k") is not None
                     else "N/A"
                 ),
                 latency=summary["average_latency_ms"],

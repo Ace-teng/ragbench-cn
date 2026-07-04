@@ -16,15 +16,17 @@ python -m ragbench.compare --questions examples/questions_zh.json --docs-dir exa
 
 当前 top-k 对比结果：
 
-| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k |
-| --- | ---: | ---: | ---: |
-| top_k=1 | 0.90 | 0.41 | 0.90 |
-| top_k=3 | 1.00 | 0.66 | 0.82 |
-| top_k=5 | 1.00 | 0.76 | 0.80 |
+| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Recall@k |
+| --- | ---: | ---: | ---: | ---: |
+| top_k=1 | 0.90 | 0.41 | 0.90 | 0.90 |
+| top_k=3 | 1.00 | 0.66 | 0.82 | 1.00 |
+| top_k=5 | 1.00 | 0.76 | 0.80 | 1.00 |
 
 ## How To Read
 
 top-k 变大后，关键词召回率提高了，因为系统拿到了更多 chunk。
+
+recall@k 也提高了，说明标准来源更容易被包含进 top-k 结果。
 
 但 precision@k 下降了，因为更多相似但非标准来源的 chunk 被一起返回。
 
@@ -34,4 +36,4 @@ top-k 变大后，关键词召回率提高了，因为系统拿到了更多 chun
 
 可以这样讲：
 
-> 我没有只看 top-k 变大后 recall 是否提高，还加入了 precision@k 来观察噪声。实验里 top-k 从 1 到 5 时，keyword recall 提高，但 precision@k 下降，说明更多上下文确实带来了更多非标准来源内容。这个现象更接近真实 RAG 调参，而不是简单认为 top-k 越大越好。
+> 我没有只看 top-k 变大后 recall 是否提高，还加入了 precision@k 来观察噪声。实验里 top-k 从 1 到 5 时，keyword recall 和 recall@k 提高，但 precision@k 下降，说明更多上下文确实带来了更多非标准来源内容。这个现象更接近真实 RAG 调参，而不是简单认为 top-k 越大越好。

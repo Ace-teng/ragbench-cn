@@ -23,6 +23,14 @@ def retrieval_precision_at_k(retrieved: list[dict], gold_doc: str | None) -> flo
     return relevant_count / len(retrieved)
 
 
+def retrieval_recall_at_k(retrieved: list[dict], gold_doc: str | None) -> float | None:
+    if not retrieved:
+        return None
+    if not gold_doc:
+        return 1.0
+    return 1.0 if any(gold_doc in str(item.get("doc", "")) for item in retrieved) else 0.0
+
+
 def classify_failure(keyword_score: float, citation_ok: bool, answer: str) -> str:
     if not answer.strip():
         return "empty_answer"

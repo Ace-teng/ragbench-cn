@@ -2,11 +2,11 @@
 
 ## Summary
 
-| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Latency ms | Failure Counts |
-| --- | ---: | ---: | ---: | ---: | --- |
-| top_k=1 | 0.90 | 0.41 | 0.90 | 0.02 | keyword_missing=8, ok=10, retrieval_miss=2 |
-| top_k=3 | 1.00 | 0.66 | 0.82 | 0.02 | keyword_missing=2, ok=18 |
-| top_k=5 | 1.00 | 0.76 | 0.80 | 0.02 | keyword_missing=1, ok=19 |
+| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Recall@k | Avg Latency ms | Failure Counts |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| top_k=1 | 0.90 | 0.41 | 0.90 | 0.90 | 0.02 | keyword_missing=8, ok=10, retrieval_miss=2 |
+| top_k=3 | 1.00 | 0.66 | 0.82 | 1.00 | 0.04 | keyword_missing=2, ok=18 |
+| top_k=5 | 1.00 | 0.76 | 0.80 | 1.00 | 0.03 | keyword_missing=1, ok=19 |
 
 ## How To Read
 
@@ -33,9 +33,9 @@
 
 | ID | Keyword Recall | Citation Hit | Failure Type | Question |
 | --- | ---: | --- | --- | --- |
-| q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
 | q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
-| q003 | 0.50 | True | ok | chunk size 过小会带来什么问题？ |
+| q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
+| q018 | 0.50 | True | ok | RAG 中 prompt 的作用是什么？ |
 
 ### top_k=5
 

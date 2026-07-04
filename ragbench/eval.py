@@ -9,7 +9,13 @@ from typing import Any
 
 from ragbench.clients import LocalKeywordClient, MockRagClient, OpenAICompatibleClient, RagFlowClient
 from ragbench.html_report import render_eval_html
-from ragbench.metrics import citation_hit, classify_failure, keyword_recall, retrieval_precision_at_k
+from ragbench.metrics import (
+    citation_hit,
+    classify_failure,
+    keyword_recall,
+    retrieval_precision_at_k,
+    retrieval_recall_at_k,
+)
 
 
 def load_questions(path: Path) -> list[dict]:
@@ -26,6 +32,7 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
         keyword_score = keyword_recall(answer, item.get("expected_keywords", []))
         citation_ok = citation_hit(citations, item.get("gold_doc"))
         precision_at_k = retrieval_precision_at_k(retrieved, item.get("gold_doc")) if "retrieved" in result else None
+        recall_at_k = retrieval_recall_at_k(retrieved, item.get("gold_doc")) if "retrieved" in result else None
         failure_type = classify_failure(keyword_score, citation_ok, answer)
         rows.append(
             {
@@ -36,11 +43,27 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
                 "keyword_recall": round(keyword_score, 2),
                 "citation_hit": citation_ok,
                 "retrieval_precision_at_k": round(precision_at_k, 2) if precision_at_k is not None else None,
+                "retrieval_recall_at_k": round(recall_at_k, 2) if recall_at_k is not None else None,
+                "retrieved": compact_retrieved(retrieved),
                 "latency_ms": result.get("latency_ms", 0),
                 "failure_type": failure_type,
             }
         )
     return rows
+
+
+def compact_retrieved(retrieved: list[dict], text_limit: int = 120) -> list[dict]:
+    compacted = []
+    for item in retrieved:
+        text = str(item.get("text", ""))
+        compacted.append(
+            {
+                "doc": item.get("doc"),
+                "score": item.get("score"),
+                "text_preview": text[:text_limit],
+            }
+        )
+    return compacted
 
 
 def summarize(rows: list[dict]) -> dict:
@@ -52,6 +75,12 @@ def summarize(rows: list[dict]) -> dict:
         if row.get("retrieval_precision_at_k") is not None
     ]
     precision_avg = mean(precision_values) if precision_values else None
+    recall_values = [
+        row["retrieval_recall_at_k"]
+        for row in rows
+        if row.get("retrieval_recall_at_k") is not None
+    ]
+    recall_avg = mean(recall_values) if recall_values else None
     latency_avg = mean(row["latency_ms"] for row in rows) if rows else 0
     failure_counts: dict[str, int] = {}
     for row in rows:
@@ -62,6 +91,7 @@ def summarize(rows: list[dict]) -> dict:
         "citation_hit_rate": round(citation_rate, 4),
         "average_keyword_recall": round(keyword_avg, 4),
         "average_retrieval_precision_at_k": round(precision_avg, 4) if precision_avg is not None else None,
+        "average_retrieval_recall_at_k": round(recall_avg, 4) if recall_avg is not None else None,
         "average_latency_ms": round(latency_avg, 2),
         "failure_counts": failure_counts,
     }
@@ -107,6 +137,12 @@ def render_report(rows: list[dict], client_name: str) -> str:
             if summary["average_retrieval_precision_at_k"] is not None
             else "N/A"
         ),
+        "- Average retrieval recall@k: "
+        + (
+            f"{summary['average_retrieval_recall_at_k']:.2f}"
+            if summary["average_retrieval_recall_at_k"] is not None
+            else "N/A"
+        ),
         f"- Average latency: {summary['average_latency_ms']:.2f} ms",
         "",
         "## Failure Types",
@@ -123,17 +159,22 @@ def render_report(rows: list[dict], client_name: str) -> str:
             "",
             "## Details",
             "",
-            "| ID | Keyword Recall | Precision@k | Citation Hit | Latency ms | Failure Type | Question |",
-            "| --- | ---: | ---: | --- | ---: | --- | --- |",
+            "| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Latency ms | Failure Type | Question |",
+            "| --- | ---: | ---: | ---: | --- | ---: | --- | --- |",
         ]
     )
 
     for row in rows:
         lines.append(
-            "| {id} | {keyword_recall:.2f} | {precision} | {citation_hit} | {latency_ms:.2f} | {failure_type} | {question} |".format(
+            "| {id} | {keyword_recall:.2f} | {precision} | {recall} | {citation_hit} | {latency_ms:.2f} | {failure_type} | {question} |".format(
                 precision=(
                     f"{row['retrieval_precision_at_k']:.2f}"
                     if row.get("retrieval_precision_at_k") is not None
+                    else "N/A"
+                ),
+                recall=(
+                    f"{row['retrieval_recall_at_k']:.2f}"
+                    if row.get("retrieval_recall_at_k") is not None
                     else "N/A"
                 ),
                 **row,
@@ -144,16 +185,44 @@ def render_report(rows: list[dict], client_name: str) -> str:
             "",
             "## Worst Cases",
             "",
-            "| ID | Keyword Recall | Citation Hit | Failure Type | Question |",
-            "| --- | ---: | --- | --- | --- |",
+            "| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Failure Type | Question |",
+            "| --- | ---: | ---: | ---: | --- | --- | --- |",
         ]
     )
     for row in worst_cases(rows):
         lines.append(
-            "| {id} | {keyword_recall:.2f} | {citation_hit} | {failure_type} | {question} |".format(
+            "| {id} | {keyword_recall:.2f} | {precision} | {recall} | {citation_hit} | {failure_type} | {question} |".format(
+                precision=(
+                    f"{row['retrieval_precision_at_k']:.2f}"
+                    if row.get("retrieval_precision_at_k") is not None
+                    else "N/A"
+                ),
+                recall=(
+                    f"{row['retrieval_recall_at_k']:.2f}"
+                    if row.get("retrieval_recall_at_k") is not None
+                    else "N/A"
+                ),
                 **row
             )
         )
+    lines.extend(["", "## Retrieved Chunks", ""])
+    for row in worst_cases(rows):
+        lines.extend([f"### {row['id']}", ""])
+        retrieved = row.get("retrieved", [])
+        if not retrieved:
+            lines.extend(["No retrieved chunks.", ""])
+            continue
+        lines.extend(["| Rank | Doc | Score | Text Preview |", "| ---: | --- | ---: | --- |"])
+        for rank, item in enumerate(retrieved, start=1):
+            lines.append(
+                "| {rank} | {doc} | {score} | {text} |".format(
+                    rank=rank,
+                    doc=item.get("doc", ""),
+                    score=item.get("score", ""),
+                    text=str(item.get("text_preview", "")).replace("|", "\\|"),
+                )
+            )
+        lines.append("")
     lines.extend(
         [
             "",

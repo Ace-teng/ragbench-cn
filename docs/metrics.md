@@ -91,6 +91,32 @@ retrieval_precision_at_k = 2 / 3 = 0.67
 - 当前用 `gold_doc` 判断相关性，粒度仍然比较粗。
 - 如果一个文档内部有相关和不相关片段，文档级 gold label 不能完全区分。
 - 外部 client 需要返回 `retrieved` chunks 才能计算该指标。
+
+## retrieval_recall_at_k
+
+含义：top-k 检索结果是否至少包含标准文档。
+
+计算方式：
+
+`	ext
+1.0 if any retrieved chunk comes from gold_doc else 0.0
+`
+
+整体报告中会对所有问题取平均值。
+
+用途：
+
+- 衡量检索是否把标准来源找回来。
+- 和 
+etrieval_precision_at_k 互补：recall@k 看有没有找回来，precision@k 看返回结果干不干净。
+- 分析 top-k 变大时是否减少漏召回。
+
+局限：
+
+- 当前仍然是文档级 gold label。
+- 如果一个问题有多个正确来源，需要扩展为多 gold docs。
+- 它不判断答案是否正确，只判断检索结果是否覆盖标准来源。
+
 ## avg_latency
 
 含义：平均响应时间。

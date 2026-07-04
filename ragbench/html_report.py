@@ -113,11 +113,17 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
             if row.get("retrieval_precision_at_k") is not None
             else "N/A"
         )
+        recall = (
+            f"{row['retrieval_recall_at_k']:.2f}"
+            if row.get("retrieval_recall_at_k") is not None
+            else "N/A"
+        )
         detail_rows.append(
             "<tr>"
             f"<td>{escape(str(row['id']))}</td>"
             f"<td class=\"num\">{row['keyword_recall']:.2f}</td>"
             f"<td class=\"num\">{precision}</td>"
+            f"<td class=\"num\">{recall}</td>"
             f"<td class=\"{citation_class}\">{row['citation_hit']}</td>"
             f"<td class=\"num\">{row['latency_ms']:.2f}</td>"
             f"<td>{escape(str(row['failure_type']))}</td>"
@@ -134,6 +140,11 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
         if summary["average_retrieval_precision_at_k"] is not None
         else "N/A"
     )
+    average_recall = (
+        f"{summary['average_retrieval_recall_at_k']:.2f}"
+        if summary["average_retrieval_recall_at_k"] is not None
+        else "N/A"
+    )
     body = f"""
     <h1>RAGBench-CN Evaluation Report</h1>
     <p>Client: <strong>{escape(client_name)}</strong></p>
@@ -142,6 +153,7 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
       <div class="metric"><span>Citation Hit Rate</span><strong>{summary['citation_hit_rate']:.2f}</strong></div>
       <div class="metric"><span>Avg Keyword Recall</span><strong>{summary['average_keyword_recall']:.2f}</strong></div>
       <div class="metric"><span>Avg Precision@k</span><strong>{average_precision}</strong></div>
+      <div class="metric"><span>Avg Recall@k</span><strong>{average_recall}</strong></div>
       <div class="metric"><span>Avg Latency</span><strong>{summary['average_latency_ms']:.2f} ms</strong></div>
     </div>
     <section>
@@ -155,7 +167,7 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
       <h2>Details</h2>
       <table>
         <thead>
-          <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th>Citation Hit</th><th class="num">Latency ms</th><th>Failure Type</th><th>Question</th></tr>
+          <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th class="num">Latency ms</th><th>Failure Type</th><th>Question</th></tr>
         </thead>
         <tbody>{''.join(detail_rows)}</tbody>
       </table>
@@ -173,12 +185,18 @@ def render_comparison_html(runs: list[dict], title: str, notes: list[str]) -> st
             if summary.get("average_retrieval_precision_at_k") is not None
             else "N/A"
         )
+        recall = (
+            f"{summary['average_retrieval_recall_at_k']:.2f}"
+            if summary.get("average_retrieval_recall_at_k") is not None
+            else "N/A"
+        )
         run_rows.append(
             "<tr>"
             f"<td>{escape(str(run['name']))}</td>"
             f"<td class=\"num\">{summary['citation_hit_rate']:.2f}</td>"
             f"<td class=\"num\">{summary['average_keyword_recall']:.2f}</td>"
             f"<td class=\"num\">{precision}</td>"
+            f"<td class=\"num\">{recall}</td>"
             f"<td class=\"num\">{summary['average_latency_ms']:.2f}</td>"
             f"<td>{_failure_counts_text(summary)}</td>"
             "</tr>"
@@ -191,7 +209,7 @@ def render_comparison_html(runs: list[dict], title: str, notes: list[str]) -> st
       <h2>Summary</h2>
       <table>
         <thead>
-          <tr><th>Run</th><th class="num">Citation Hit Rate</th><th class="num">Avg Keyword Recall</th><th class="num">Avg Precision@k</th><th class="num">Avg Latency ms</th><th>Failure Counts</th></tr>
+          <tr><th>Run</th><th class="num">Citation Hit Rate</th><th class="num">Avg Keyword Recall</th><th class="num">Avg Precision@k</th><th class="num">Avg Recall@k</th><th class="num">Avg Latency ms</th><th>Failure Counts</th></tr>
         </thead>
         <tbody>{''.join(run_rows)}</tbody>
       </table>
