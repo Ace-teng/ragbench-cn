@@ -3,10 +3,11 @@
 [![Tests](https://github.com/Ace-teng/ragbench-cn/actions/workflows/tests.yml/badge.svg)](https://github.com/Ace-teng/ragbench-cn/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Release](https://img.shields.io/github/v/release/Ace-teng/ragbench-cn)
 
 RAGBench-CN is a lightweight Chinese RAG evaluation toolkit.
 
-It evaluates knowledge-base QA systems with a question set and generates Markdown / JSON reports for keyword recall, retrieval precision@k, retrieval recall@k, citation hit rate, latency, failure types, diagnoses, and worst cases.
+It evaluates knowledge-base QA systems with a question set and generates Markdown / JSON / HTML reports for keyword recall, retrieval precision@k, retrieval recall@k, citation hit rate, latency, failure types, diagnoses, and worst cases.
 
 中文简介：
 
@@ -22,6 +23,14 @@ Many RAG demos can answer questions, but they often lack evaluation:
 - Which questions failed, and why?
 
 RAGBench-CN does not rebuild a RAG platform. It evaluates outputs from RAGFlow, OpenAI-compatible services, or a local Markdown baseline.
+
+## What You Get
+
+- A reproducible RAG evaluation workflow.
+- Local baselines for quick experiments before wiring real services.
+- Comparison reports for `top-k`, `chunk size`, and retrieval clients.
+- A concrete keyword-vs-embedding finding instead of a vague demo.
+- Failure cases that can be inspected and discussed.
 
 ## Features
 
@@ -99,6 +108,32 @@ ragbench-compare --mode client --clients local-keyword,local-embedding --questio
 ```
 
 Generated examples are listed in [reports/README.md](reports/README.md).
+
+## Reproduce The Main Finding
+
+Install the optional embedding dependency:
+
+```powershell
+pip install -e .[embedding]
+```
+
+Run the default Chinese comparison:
+
+```powershell
+ragbench-compare --mode client --clients local-keyword,local-embedding --questions examples/questions_zh.json --docs-dir examples/docs --top-k 3 --out reports/client_comparison.md --json-out reports/client_comparison.json --html-out reports/client_comparison.html
+```
+
+Run the paraphrase comparison:
+
+```powershell
+ragbench-compare --mode client --clients local-keyword,local-embedding --questions examples/questions_paraphrase.json --docs-dir examples/docs --top-k 3 --out reports/paraphrase_client_comparison.md --json-out reports/paraphrase_client_comparison.json --html-out reports/paraphrase_client_comparison.html
+```
+
+Read the two reports together:
+
+- Default Chinese questions: keyword retrieval is competitive because wording overlap is high.
+- English paraphrase questions: embedding retrieval works better because semantic matching matters more.
+- This is the core point of the project: RAG retrieval strategy should be evaluated under different data distributions.
 
 ## Example Result
 

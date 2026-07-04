@@ -1,4 +1,4 @@
-# GitHub Release Note Draft
+# GitHub Release Note
 
 ## Title
 
