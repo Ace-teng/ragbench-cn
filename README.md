@@ -6,7 +6,7 @@
 
 RAGBench-CN is a lightweight Chinese RAG evaluation toolkit.
 
-It evaluates knowledge-base QA systems with a question set and generates Markdown / JSON reports for keyword recall, retrieval precision@k, retrieval recall@k, citation hit rate, latency, failure types, and worst cases.
+It evaluates knowledge-base QA systems with a question set and generates Markdown / JSON reports for keyword recall, retrieval precision@k, retrieval recall@k, citation hit rate, latency, failure types, diagnoses, and worst cases.
 
 中文简介：
 
@@ -35,7 +35,7 @@ RAGBench-CN does not rebuild a RAG platform. It evaluates outputs from RAGFlow, 
 - Retrieval recall@k and retrieved chunk previews
 - Top-k comparison
 - Chunk size comparison
-- Worst case analysis
+- Worst case analysis with diagnosis text
 
 ## Install
 

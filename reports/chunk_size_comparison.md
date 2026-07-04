@@ -26,8 +26,8 @@
 | ID | Keyword Recall | Citation Hit | Failure Type | Question |
 | --- | ---: | --- | --- | --- |
 | q003 | 0.25 | True | keyword_missing | chunk size 过小会带来什么问题？ |
+| q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
 | q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
-| q017 | 0.25 | True | keyword_missing | 为什么 RAG 系统需要失败 case 分析？ |
 
 ### chunk_size=300
 
@@ -41,6 +41,6 @@
 
 | ID | Keyword Recall | Citation Hit | Failure Type | Question |
 | --- | ---: | --- | --- | --- |
-| q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
 | q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
+| q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
 | q003 | 0.50 | True | ok | chunk size 过小会带来什么问题？ |

@@ -1,6 +1,6 @@
 import unittest
 
-from ragbench.eval import evaluate
+from ragbench.eval import diagnose_result, evaluate
 
 
 class FakeClient:
@@ -42,6 +42,31 @@ class EvalTest(unittest.TestCase):
         self.assertEqual(rows[0]["retrieval_recall_at_k"], 1.0)
         self.assertEqual(rows[0]["retrieved"][0]["doc"], "rag.md")
         self.assertIn("text_preview", rows[0]["retrieved"][0])
+        self.assertEqual(rows[0]["diagnosis"], "ok: answer passed the current lightweight checks")
+
+    def test_diagnose_result_marks_retrieval_miss(self) -> None:
+        self.assertEqual(
+            diagnose_result(
+                keyword_score=0.2,
+                citation_ok=False,
+                answer="partial",
+                precision_at_k=0,
+                recall_at_k=0,
+            ),
+            "retrieval_miss: gold source was not retrieved",
+        )
+
+    def test_diagnose_result_marks_noisy_retrieval(self) -> None:
+        self.assertEqual(
+            diagnose_result(
+                keyword_score=0.8,
+                citation_ok=True,
+                answer="answer",
+                precision_at_k=0.33,
+                recall_at_k=1,
+            ),
+            "noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks",
+        )
 
 
 if __name__ == "__main__":

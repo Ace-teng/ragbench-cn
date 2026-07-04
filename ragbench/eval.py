@@ -34,6 +34,13 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
         precision_at_k = retrieval_precision_at_k(retrieved, item.get("gold_doc")) if "retrieved" in result else None
         recall_at_k = retrieval_recall_at_k(retrieved, item.get("gold_doc")) if "retrieved" in result else None
         failure_type = classify_failure(keyword_score, citation_ok, answer)
+        diagnosis = diagnose_result(
+            keyword_score=keyword_score,
+            citation_ok=citation_ok,
+            answer=answer,
+            precision_at_k=precision_at_k,
+            recall_at_k=recall_at_k,
+        )
         rows.append(
             {
                 "id": item["id"],
@@ -47,9 +54,30 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
                 "retrieved": compact_retrieved(retrieved),
                 "latency_ms": result.get("latency_ms", 0),
                 "failure_type": failure_type,
+                "diagnosis": diagnosis,
             }
         )
     return rows
+
+
+def diagnose_result(
+    keyword_score: float,
+    citation_ok: bool,
+    answer: str,
+    precision_at_k: float | None,
+    recall_at_k: float | None,
+) -> str:
+    if not answer.strip():
+        return "empty_answer: no answer was returned"
+    if recall_at_k == 0:
+        return "retrieval_miss: gold source was not retrieved"
+    if precision_at_k is not None and precision_at_k < 0.5:
+        return "noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks"
+    if not citation_ok:
+        return "citation_missing: answer did not cite the expected source"
+    if keyword_score < 0.5:
+        return "keyword_missing: answer missed expected key concepts"
+    return "ok: answer passed the current lightweight checks"
 
 
 def compact_retrieved(retrieved: list[dict], text_limit: int = 120) -> list[dict]:
@@ -159,14 +187,14 @@ def render_report(rows: list[dict], client_name: str) -> str:
             "",
             "## Details",
             "",
-            "| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Latency ms | Failure Type | Question |",
-            "| --- | ---: | ---: | ---: | --- | ---: | --- | --- |",
+            "| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Latency ms | Failure Type | Diagnosis | Question |",
+            "| --- | ---: | ---: | ---: | --- | ---: | --- | --- | --- |",
         ]
     )
 
     for row in rows:
         lines.append(
-            "| {id} | {keyword_recall:.2f} | {precision} | {recall} | {citation_hit} | {latency_ms:.2f} | {failure_type} | {question} |".format(
+            "| {id} | {keyword_recall:.2f} | {precision} | {recall} | {citation_hit} | {latency_ms:.2f} | {failure_type} | {diagnosis} | {question} |".format(
                 precision=(
                     f"{row['retrieval_precision_at_k']:.2f}"
                     if row.get("retrieval_precision_at_k") is not None
@@ -185,13 +213,13 @@ def render_report(rows: list[dict], client_name: str) -> str:
             "",
             "## Worst Cases",
             "",
-            "| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Failure Type | Question |",
-            "| --- | ---: | ---: | ---: | --- | --- | --- |",
+            "| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Failure Type | Diagnosis | Question |",
+            "| --- | ---: | ---: | ---: | --- | --- | --- | --- |",
         ]
     )
     for row in worst_cases(rows):
         lines.append(
-            "| {id} | {keyword_recall:.2f} | {precision} | {recall} | {citation_hit} | {failure_type} | {question} |".format(
+            "| {id} | {keyword_recall:.2f} | {precision} | {recall} | {citation_hit} | {failure_type} | {diagnosis} | {question} |".format(
                 precision=(
                     f"{row['retrieval_precision_at_k']:.2f}"
                     if row.get("retrieval_precision_at_k") is not None

@@ -15,6 +15,7 @@ class HtmlReportTest(unittest.TestCase):
                 "citation_hit": False,
                 "latency_ms": 1.2,
                 "failure_type": "keyword_missing",
+                "diagnosis": "<b>bad</b>",
             }
         ]
         summary = {
@@ -31,6 +32,7 @@ class HtmlReportTest(unittest.TestCase):
 
         self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", html)
         self.assertNotIn("<script>alert(1)</script>", html)
+        self.assertIn("&lt;b&gt;bad&lt;/b&gt;", html)
 
     def test_comparison_html_contains_run_summary(self) -> None:
         runs = [

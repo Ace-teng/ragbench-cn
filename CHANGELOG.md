@@ -13,6 +13,7 @@
 - Retrieved chunk metadata in the local keyword baseline.
 - Retrieval noise example document for precision@k experiments.
 - Retrieved chunk previews in JSON and Markdown reports.
+- Per-question diagnosis text for failure analysis.
 
 ## v0.1.0 - 2026-07-04
 

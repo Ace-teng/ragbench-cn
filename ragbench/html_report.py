@@ -127,6 +127,7 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
             f"<td class=\"{citation_class}\">{row['citation_hit']}</td>"
             f"<td class=\"num\">{row['latency_ms']:.2f}</td>"
             f"<td>{escape(str(row['failure_type']))}</td>"
+            f"<td>{escape(str(row.get('diagnosis', '')))}</td>"
             f"<td>{escape(str(row['question']))}</td>"
             "</tr>"
         )
@@ -167,7 +168,7 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
       <h2>Details</h2>
       <table>
         <thead>
-          <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th class="num">Latency ms</th><th>Failure Type</th><th>Question</th></tr>
+          <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th class="num">Latency ms</th><th>Failure Type</th><th>Diagnosis</th><th>Question</th></tr>
         </thead>
         <tbody>{''.join(detail_rows)}</tbody>
       </table>

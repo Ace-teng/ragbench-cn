@@ -1,33 +1,54 @@
 # Failure Analysis
 
-平均指标只能说明整体趋势，不能告诉我们具体哪里坏了。
+Average metrics show the overall trend, but they do not explain what went wrong for a specific question.
 
-RAGBench-CN 现在会在报告里列出 worst cases，也就是最需要优先排查的问题。
+RAGBench-CN reports three layers of failure analysis:
 
-## 当前排序规则
+- `failure_type`: coarse category for sorting and counting.
+- `diagnosis`: short human-readable explanation.
+- retrieved chunk previews: evidence for debugging retrieval behavior.
 
-优先级大致是：
+## Failure Type
 
-1. 非 `ok` 的失败样例优先。
-2. `keyword_recall` 更低的样例优先。
-3. `citation_hit=False` 的样例优先。
-4. 延迟更高的样例靠前。
+Current coarse categories:
 
-## 为什么要看 worst cases
+| Type | Meaning |
+| --- | --- |
+| ok | Citation hit and keyword recall are acceptable under current lightweight checks. |
+| empty_answer | The client returned no answer. |
+| retrieval_miss | Citation did not hit and keyword recall is low. |
+| citation_missing | Keyword recall is acceptable, but the expected source was not cited. |
+| keyword_missing | Citation hit, but the answer missed expected key concepts. |
 
-RAG 优化不能只看平均分。
+## Diagnosis
 
-例如：
+`diagnosis` combines multiple signals into a readable explanation.
 
-- 平均关键词召回率提高了，但某些关键问题仍然完全没答到点。
-- 引用命中率很高，但回答内容缺关键概念。
-- top-k 变大后整体变好，但个别问题被更多噪声干扰。
+Examples:
 
-worst cases 用来定位这些具体问题。
+| Diagnosis | Meaning |
+| --- | --- |
+| `retrieval_miss: gold source was not retrieved` | The expected source did not appear in retrieved chunks. |
+| `noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks` | Recall is fine, but precision@k is low. |
+| `citation_missing: answer did not cite the expected source` | The answer did not cite the gold source. |
+| `keyword_missing: answer missed expected key concepts` | The answer did not cover enough expected keywords. |
+| `ok: answer passed the current lightweight checks` | The current checks did not detect an issue. |
 
-## 面试表达
+`failure_type` and `diagnosis` are intentionally separate. A row can have `failure_type=ok` but still receive a noisy retrieval diagnosis. That means the answer passed the lightweight answer checks, but the retrieved context still contains too much noise.
 
-可以说：
+## Retrieved Chunks
 
-> 我没有只输出平均指标，还在报告中列出 worst cases。这样可以定位具体失败问题，比如引用命中但关键词缺失，或者检索没有命中标准文档。后续优化时可以针对这些失败样例调整 chunk 策略、top-k 或 rerank。
+For worst cases, the Markdown report includes retrieved chunk previews:
 
+- rank
+- source document
+- retrieval score
+- text preview
+
+This makes debugging more concrete. Instead of only seeing that a question failed, you can inspect which chunks were returned and whether the context was missing, noisy, or poorly ranked.
+
+## Interview Notes
+
+可以这样讲：
+
+> 我没有只输出平均分，而是把失败分析拆成 failure_type、diagnosis 和 retrieved chunks。failure_type 用来统计，diagnosis 用来解释，retrieved chunks 用来定位证据。这样能区分漏召回、引用缺失、关键词缺失和噪声检索，而不是只说这个问题答错了。
