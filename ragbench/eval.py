@@ -7,7 +7,13 @@ from pathlib import Path
 from statistics import mean
 from typing import Any
 
-from ragbench.clients import LocalKeywordClient, MockRagClient, OpenAICompatibleClient, RagFlowClient
+from ragbench.clients import (
+    LocalEmbeddingClient,
+    LocalKeywordClient,
+    MockRagClient,
+    OpenAICompatibleClient,
+    RagFlowClient,
+)
 from ragbench.html_report import render_eval_html
 from ragbench.metrics import (
     citation_hit,
@@ -303,13 +309,18 @@ def main() -> int:
     parser.add_argument("--html-out", help="Optional path to HTML report.")
     parser.add_argument(
         "--client",
-        choices=["mock", "local-keyword", "openai-compatible", "ragflow"],
+        choices=["mock", "local-keyword", "local-embedding", "openai-compatible", "ragflow"],
         default="mock",
         help="Evaluation target client.",
     )
     parser.add_argument("--docs-dir", default="examples/docs", help="Markdown docs dir for local-keyword client.")
     parser.add_argument("--top-k", type=int, default=3, help="Number of local chunks to retrieve.")
     parser.add_argument("--chunk-size", type=int, help="Optional character chunk size for local-keyword client.")
+    parser.add_argument(
+        "--embedding-model",
+        default="paraphrase-multilingual-MiniLM-L12-v2",
+        help="SentenceTransformers model name for local-embedding client.",
+    )
     parser.add_argument("--base-url", help="Base URL for openai-compatible client.")
     parser.add_argument("--api-key", help="API key for openai-compatible client.")
     parser.add_argument("--model", help="Model name for openai-compatible client.")
@@ -323,6 +334,13 @@ def main() -> int:
         client = MockRagClient()
     elif client_name == "local-keyword":
         client = LocalKeywordClient(Path(args.docs_dir), top_k=args.top_k, chunk_size=args.chunk_size)
+    elif client_name == "local-embedding":
+        client = LocalEmbeddingClient(
+            Path(args.docs_dir),
+            top_k=args.top_k,
+            chunk_size=args.chunk_size,
+            model_name=args.embedding_model,
+        )
     elif client_name == "openai-compatible":
         base_url = args.base_url or os.getenv("OPENAI_COMPATIBLE_BASE_URL")
         api_key = args.api_key or os.getenv("OPENAI_COMPATIBLE_API_KEY")

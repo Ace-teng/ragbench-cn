@@ -3,6 +3,8 @@
     "questions": 20,
     "citation_hit_rate": 1.0,
     "average_keyword_recall": 0.475,
+    "average_retrieval_precision_at_k": null,
+    "average_retrieval_recall_at_k": null,
     "average_latency_ms": 0.0,
     "failure_counts": {
       "ok": 12,
@@ -13,279 +15,454 @@
     {
       "id": "q007",
       "question": "rerank 的作用是什么？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q014",
       "question": "为什么不能只看大模型回答是否流畅？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q004",
       "question": "embedding 在 RAG 系统中起什么作用？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q005",
       "question": "向量检索返回的 top-k 是什么意思？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q010",
       "question": "关键词召回率有什么局限？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     }
   ],
   "results": [
     {
       "id": "q001",
       "question": "RAG 的基本流程是什么？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q002",
       "question": "RAG 中 chunk size 过大会带来什么问题？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q003",
       "question": "chunk size 过小会带来什么问题？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q004",
       "question": "embedding 在 RAG 系统中起什么作用？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q005",
       "question": "向量检索返回的 top-k 是什么意思？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q006",
       "question": "top-k 变大会怎样影响回答质量？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 1.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q007",
       "question": "rerank 的作用是什么？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q008",
       "question": "RAG 为什么仍然可能出现幻觉？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q009",
       "question": "引用命中率能说明什么？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q010",
       "question": "关键词召回率有什么局限？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q011",
       "question": "如何判断一次 RAG 回答是检索失败？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q012",
       "question": "如何降低 RAG 系统的回答延迟？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q013",
       "question": "RAG 的评估指标应该包含哪些方面？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q014",
       "question": "为什么不能只看大模型回答是否流畅？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q015",
       "question": "文档切分时为什么要保留标题或元数据？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q016",
       "question": "RAG 和直接把问题发给大模型有什么区别？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q017",
       "question": "为什么 RAG 系统需要失败 case 分析？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     },
     {
       "id": "q018",
       "question": "RAG 中 prompt 的作用是什么？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q019",
       "question": "什么情况下应该调整 chunk 策略？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "ok"
+      "failure_type": "ok",
+      "diagnosis": "ok: answer passed the current lightweight checks"
     },
     {
       "id": "q020",
       "question": "一个可面试的 RAG 项目应该留下哪些证据？",
+      "gold_docs": [
+        "rag_basics.md"
+      ],
       "citations": [
         "rag_basics.md"
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": null,
+      "retrieval_recall_at_k": null,
+      "retrieved": [],
       "latency_ms": 0.0,
-      "failure_type": "keyword_missing"
+      "failure_type": "keyword_missing",
+      "diagnosis": "keyword_missing: answer missed expected key concepts"
     }
   ]
 }

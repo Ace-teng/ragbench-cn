@@ -27,6 +27,11 @@ classifiers = [
 Homepage = "https://github.com/Ace-teng/ragbench-cn"
 Repository = "https://github.com/Ace-teng/ragbench-cn"
 
+[project.optional-dependencies]
+embedding = [
+  "sentence-transformers",
+]
+
 [project.scripts]
 ragbench-eval = "ragbench.eval:main"
 ragbench-compare = "ragbench.compare:main"

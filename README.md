@@ -29,6 +29,7 @@ RAGBench-CN does not rebuild a RAG platform. It evaluates outputs from RAGFlow, 
 - Markdown, JSON, and HTML reports
 - `mock` client for pipeline validation
 - `local-keyword` client for local Markdown retrieval baseline
+- `local-embedding` client for optional local semantic retrieval baseline
 - `openai-compatible` client for compatible `/chat/completions` services
 - `ragflow` client for RAGFlow non-streaming chat completion
 - Retrieval precision@k for clients that return retrieved chunks
@@ -45,6 +46,12 @@ python -m venv .venv
 pip install -e .
 ```
 
+Optional local embedding baseline:
+
+```powershell
+pip install -e .[embedding]
+```
+
 ## Quick Start
 
 Validate the evaluation pipeline with mock data:
@@ -57,6 +64,12 @@ Run local Markdown retrieval baseline:
 
 ```powershell
 ragbench-eval --questions examples/questions_zh.json --out reports/local_keyword_report.md --json-out reports/local_keyword_result.json --html-out reports/local_keyword_report.html --client local-keyword --docs-dir examples/docs --top-k 3
+```
+
+Run optional local embedding retrieval baseline:
+
+```powershell
+ragbench-eval --questions examples/questions_zh.json --out reports/local_embedding_report.md --json-out reports/local_embedding_result.json --client local-embedding --docs-dir examples/docs --top-k 3
 ```
 
 Compare top-k settings:
@@ -138,6 +151,7 @@ See [docs/metrics.md](docs/metrics.md) for details.
 | --- | --- |
 | `mock` | Validate evaluation pipeline |
 | `local-keyword` | Local Markdown retrieval baseline |
+| `local-embedding` | Optional local semantic retrieval baseline with SentenceTransformers |
 | `openai-compatible` | Any OpenAI-compatible `/chat/completions` service |
 | `ragflow` | RAGFlow non-streaming chat completion |
 

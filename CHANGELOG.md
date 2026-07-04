@@ -15,6 +15,7 @@
 - Retrieved chunk previews in JSON and Markdown reports.
 - Per-question diagnosis text for failure analysis.
 - Multiple expected source documents through `gold_docs`.
+- Optional local embedding retrieval baseline with `local-embedding`.
 
 ## v0.1.0 - 2026-07-04
 
