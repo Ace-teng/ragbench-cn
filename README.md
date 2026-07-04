@@ -1,5 +1,9 @@
 # RAGBench-CN
 
+[![Tests](https://github.com/Ace-teng/ragbench-cn/actions/workflows/tests.yml/badge.svg)](https://github.com/Ace-teng/ragbench-cn/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 RAGBench-CN is a lightweight Chinese RAG evaluation toolkit.
 
 It evaluates knowledge-base QA systems with a question set and generates Markdown / JSON reports for keyword recall, citation hit rate, latency, failure types, and worst cases.
