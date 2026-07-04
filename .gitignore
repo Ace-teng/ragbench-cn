@@ -6,3 +6,4 @@ reports/*.tmp
 *.egg-info/
 build/
 dist/
+private/

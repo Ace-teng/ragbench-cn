@@ -71,8 +71,6 @@ ragbench-compare --mode chunk-size --questions examples/questions_zh.json --docs
 
 Generated examples are listed in [reports/README.md](reports/README.md).
 
-For interview preparation, see [docs/interview_playbook.md](docs/interview_playbook.md).
-
 ## Example Result
 
 Top-k comparison on the local Markdown baseline:
