@@ -22,8 +22,8 @@
 
 ### local-keyword
 
-| ID | Keyword Recall | Citation Hit | Failure Type | Question |
-| --- | ---: | --- | --- | --- |
-| q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
-| q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
-| q007 | 0.50 | True | ok | rerank 的作用是什么？ |
+| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Failure Type | Diagnosis | Question |
+| --- | ---: | ---: | ---: | --- | --- | --- | --- |
+| q001 | 0.25 | 1.00 | 1.00 | True | keyword_missing | keyword_missing: answer missed expected key concepts | RAG 的基本流程是什么？ |
+| q011 | 0.25 | 1.00 | 1.00 | True | keyword_missing | keyword_missing: answer missed expected key concepts | 如何判断一次 RAG 回答是检索失败？ |
+| q003 | 0.50 | 0.33 | 1.00 | True | ok | noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks | chunk size 过小会带来什么问题？ |

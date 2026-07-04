@@ -119,6 +119,10 @@ def run_client_comparison(
     return runs
 
 
+def format_metric(value: float | None) -> str:
+    return f"{value:.2f}" if value is not None else "N/A"
+
+
 def render_comparison_report(runs: list[dict], title: str, notes: list[str]) -> str:
     lines = [
         f"# {title}",
@@ -170,13 +174,15 @@ def render_comparison_report(runs: list[dict], title: str, notes: list[str]) -> 
         lines.extend([f"### {run['name']}", ""])
         lines.extend(
             [
-                "| ID | Keyword Recall | Citation Hit | Failure Type | Question |",
-                "| --- | ---: | --- | --- | --- |",
+                "| ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Failure Type | Diagnosis | Question |",
+                "| --- | ---: | ---: | ---: | --- | --- | --- | --- |",
             ]
         )
         for row in run.get("worst_cases", []):
             lines.append(
-                "| {id} | {keyword_recall:.2f} | {citation_hit} | {failure_type} | {question} |".format(
+                "| {id} | {keyword_recall:.2f} | {precision} | {recall} | {citation_hit} | {failure_type} | {diagnosis} | {question} |".format(
+                    precision=format_metric(row.get("retrieval_precision_at_k")),
+                    recall=format_metric(row.get("retrieval_recall_at_k")),
                     **row
                 )
             )

@@ -179,6 +179,7 @@ def render_eval_html(rows: list[dict], summary: dict, client_name: str) -> str:
 
 def render_comparison_html(runs: list[dict], title: str, notes: list[str]) -> str:
     run_rows = []
+    worst_case_sections = []
     for run in runs:
         summary = run["summary"]
         precision = (
@@ -202,6 +203,42 @@ def render_comparison_html(runs: list[dict], title: str, notes: list[str]) -> st
             f"<td>{_failure_counts_text(summary)}</td>"
             "</tr>"
         )
+        worst_rows = []
+        for row in run.get("worst_cases", []):
+            precision = (
+                f"{row['retrieval_precision_at_k']:.2f}"
+                if row.get("retrieval_precision_at_k") is not None
+                else "N/A"
+            )
+            recall = (
+                f"{row['retrieval_recall_at_k']:.2f}"
+                if row.get("retrieval_recall_at_k") is not None
+                else "N/A"
+            )
+            citation_class = "ok" if row.get("citation_hit") else "bad"
+            worst_rows.append(
+                "<tr>"
+                f"<td>{escape(str(row['id']))}</td>"
+                f"<td class=\"num\">{row['keyword_recall']:.2f}</td>"
+                f"<td class=\"num\">{precision}</td>"
+                f"<td class=\"num\">{recall}</td>"
+                f"<td class=\"{citation_class}\">{row.get('citation_hit')}</td>"
+                f"<td>{escape(str(row.get('failure_type', '')))}</td>"
+                f"<td>{escape(str(row.get('diagnosis', '')))}</td>"
+                f"<td>{escape(str(row.get('question', '')))}</td>"
+                "</tr>"
+            )
+        worst_case_sections.append(
+            f"""
+      <h3>{escape(str(run['name']))}</h3>
+      <table>
+        <thead>
+          <tr><th>ID</th><th class="num">Keyword Recall</th><th class="num">Precision@k</th><th class="num">Recall@k</th><th>Citation Hit</th><th>Failure Type</th><th>Diagnosis</th><th>Question</th></tr>
+        </thead>
+        <tbody>{''.join(worst_rows)}</tbody>
+      </table>
+"""
+        )
 
     note_items = "".join(f"<li>{escape(note)}</li>" for note in notes)
     body = f"""
@@ -218,6 +255,10 @@ def render_comparison_html(runs: list[dict], title: str, notes: list[str]) -> st
     <section>
       <h2>Experiment Notes</h2>
       <ul>{note_items}</ul>
+    </section>
+    <section>
+      <h2>Worst Cases By Run</h2>
+      {''.join(worst_case_sections)}
     </section>
 """
     return _page(title, body)

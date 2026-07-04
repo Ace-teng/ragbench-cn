@@ -46,6 +46,18 @@ class HtmlReportTest(unittest.TestCase):
                     "average_latency_ms": 2.3,
                     "failure_counts": {"ok": 2},
                 },
+                "worst_cases": [
+                    {
+                        "id": "q001",
+                        "question": "<script>bad()</script>",
+                        "keyword_recall": 0.25,
+                        "retrieval_precision_at_k": 0.5,
+                        "retrieval_recall_at_k": 1,
+                        "citation_hit": True,
+                        "failure_type": "keyword_missing",
+                        "diagnosis": "keyword_missing: answer missed expected key concepts",
+                    }
+                ],
             }
         ]
 
@@ -56,6 +68,8 @@ class HtmlReportTest(unittest.TestCase):
         self.assertIn("0.50", html)
         self.assertIn("1.00", html)
         self.assertIn("ok=2", html)
+        self.assertIn("keyword_missing: answer missed expected key concepts", html)
+        self.assertIn("&lt;script&gt;bad()&lt;/script&gt;", html)
 
 
 if __name__ == "__main__":

@@ -17,6 +17,7 @@
 - Multiple expected source documents through `gold_docs`.
 - Optional local embedding retrieval baseline with `local-embedding`.
 - Client comparison mode for comparing retrieval clients.
+- Diagnosis and retrieval metrics in comparison report worst cases.
 
 ## v0.1.0 - 2026-07-04
 

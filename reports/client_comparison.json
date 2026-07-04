@@ -19,6 +19,40 @@
       },
       "worst_cases": [
         {
+          "id": "q001",
+          "question": "RAG 的基本流程是什么？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "retrieval_precision_at_k": 1.0,
+          "retrieval_recall_at_k": 1.0,
+          "retrieved": [
+            {
+              "doc": "rag_basics.md",
+              "score": 4,
+              "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 4,
+              "text_preview": "评估 RAG 不能只看答案是否流畅。一个回答可能语言自然，但没有引用正确文档，或者覆盖了错误事实。更可靠的评估应包含多个维度：检索是否命中标准文档，回答是否覆盖关键概念，引用是否存在，响应延迟是否可接受，以及失败 case 属于检索失败、引"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 4,
+              "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
+            }
+          ],
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing",
+          "diagnosis": "keyword_missing: answer missed expected key concepts"
+        },
+        {
           "id": "q011",
           "question": "如何判断一次 RAG 回答是检索失败？",
           "gold_docs": [
@@ -53,42 +87,8 @@
           "diagnosis": "keyword_missing: answer missed expected key concepts"
         },
         {
-          "id": "q001",
-          "question": "RAG 的基本流程是什么？",
-          "gold_docs": [
-            "rag_basics.md"
-          ],
-          "citations": [
-            "rag_basics.md"
-          ],
-          "keyword_recall": 0.25,
-          "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "retrieval_recall_at_k": 1.0,
-          "retrieved": [
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
-            },
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "评估 RAG 不能只看答案是否流畅。一个回答可能语言自然，但没有引用正确文档，或者覆盖了错误事实。更可靠的评估应包含多个维度：检索是否命中标准文档，回答是否覆盖关键概念，引用是否存在，响应延迟是否可接受，以及失败 case 属于检索失败、引"
-            },
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
-            }
-          ],
-          "latency_ms": 0.04,
-          "failure_type": "keyword_missing",
-          "diagnosis": "keyword_missing: answer missed expected key concepts"
-        },
-        {
-          "id": "q007",
-          "question": "rerank 的作用是什么？",
+          "id": "q003",
+          "question": "chunk size 过小会带来什么问题？",
           "gold_docs": [
             "rag_basics.md"
           ],
@@ -98,28 +98,28 @@
           ],
           "keyword_recall": 0.5,
           "citation_hit": true,
-          "retrieval_precision_at_k": 0.67,
+          "retrieval_precision_at_k": 0.33,
           "retrieval_recall_at_k": 1.0,
           "retrieved": [
             {
               "doc": "rag_basics.md",
               "score": 8,
-              "text_preview": "rerank 的作用是在向量检索之后重新排序候选片段。向量检索负责快速召回，rerank 更关注问题和候选片段之间的精细相关性。对于候选片段较多、相似文本较多、专业文档较复杂的场景，rerank 往往能提高最终上下文质量。"
-            },
-            {
-              "doc": "rag_basics.md",
-              "score": 7,
-              "text_preview": "embedding 的作用是把文本映射到向量空间，让语义相近的文本在向量空间中距离更近。向量检索并不是关键词匹配，它更关注语义相似度。用户问题和文档片段都可以被转换成向量，然后通过相似度计算找到候选片段。"
+              "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
             },
             {
               "doc": "retrieval_noise.md",
-              "score": 7,
-              "text_preview": "这份文档不应该作为 `rag_basics.md` 问题的标准引用来源。它的作用是帮助 precision@k 暴露检索结果中的噪声。"
+              "score": 6,
+              "text_preview": "这份文档用于构造检索噪声。它包含 RAG、top-k、chunk size、上下文、延迟、检索、引用等词，但不是示例问题集的标准答案来源。"
+            },
+            {
+              "doc": "retrieval_noise.md",
+              "score": 6,
+              "text_preview": "chunk size 过大时，一个片段可能同时包含多个主题；chunk size 过小时，片段可能缺少必要上下文。两种情况都可能影响最终回答质量。"
             }
           ],
           "latency_ms": 0.02,
           "failure_type": "ok",
-          "diagnosis": "ok: answer passed the current lightweight checks"
+          "diagnosis": "noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks"
         }
       ]
     }
