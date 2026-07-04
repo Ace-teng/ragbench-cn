@@ -18,6 +18,9 @@ The example documents include `retrieval_noise.md`, a similar but non-gold sourc
 | `top_k_comparison.html` | Browser-friendly top-k comparison report. |
 | `chunk_size_comparison.md` | Comparison report for `chunk_size=120,300,600`. |
 | `chunk_size_comparison.json` | Machine-readable chunk size comparison result. |
+| `client_comparison.md` | Comparison report for retrieval clients. |
+| `client_comparison.json` | Machine-readable client comparison result. |
+| `client_comparison.html` | Browser-friendly client comparison report. |
 
 ## Regenerate
 
@@ -26,4 +29,5 @@ ragbench-eval --questions examples/questions_zh.json --out reports/sample_report
 ragbench-eval --questions examples/questions_zh.json --out reports/local_keyword_report.md --json-out reports/local_keyword_result.json --html-out reports/local_keyword_report.html --client local-keyword --docs-dir examples/docs --top-k 3
 ragbench-compare --questions examples/questions_zh.json --docs-dir examples/docs --top-k 1,3,5 --out reports/top_k_comparison.md --json-out reports/top_k_comparison.json --html-out reports/top_k_comparison.html
 ragbench-compare --mode chunk-size --questions examples/questions_zh.json --docs-dir examples/docs --top-k 3 --chunk-size 120,300,600 --out reports/chunk_size_comparison.md --json-out reports/chunk_size_comparison.json
+ragbench-compare --mode client --clients local-keyword --questions examples/questions_zh.json --docs-dir examples/docs --top-k 3 --out reports/client_comparison.md --json-out reports/client_comparison.json --html-out reports/client_comparison.html
 ```

@@ -4,15 +4,15 @@
 
 | Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Recall@k | Avg Latency ms | Failure Counts |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| top_k=1 | 0.90 | 0.41 | 0.90 | 0.90 | 0.03 | keyword_missing=8, ok=10, retrieval_miss=2 |
-| top_k=3 | 1.00 | 0.66 | 0.82 | 1.00 | 0.04 | keyword_missing=2, ok=18 |
-| top_k=5 | 1.00 | 0.76 | 0.80 | 1.00 | 0.04 | keyword_missing=1, ok=19 |
+| top_k=1 | 0.90 | 0.41 | 0.90 | 0.90 | 0.02 | keyword_missing=8, ok=10, retrieval_miss=2 |
+| top_k=3 | 1.00 | 0.66 | 0.82 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
+| top_k=5 | 1.00 | 0.76 | 0.80 | 1.00 | 0.02 | keyword_missing=1, ok=19 |
 
 ## How To Read
 
-- Higher top-k may improve recall because more chunks are returned.
-- Higher top-k may also introduce noise and increase latency in real RAG systems.
-- This report uses `local-keyword`, so latency is not representative of model-based RAG.
+- Compare citation hit rate, keyword recall, precision@k, recall@k, latency, and failure counts together.
+- Higher recall is not always better if precision drops sharply.
+- Local baselines are useful for controlled experiments, but production RAG should be tested with real services.
 
 ## Experiment Notes
 
@@ -27,7 +27,7 @@
 | --- | ---: | --- | --- | --- |
 | q004 | 0.00 | True | keyword_missing | embedding 在 RAG 系统中起什么作用？ |
 | q017 | 0.00 | True | keyword_missing | 为什么 RAG 系统需要失败 case 分析？ |
-| q006 | 0.25 | False | retrieval_miss | top-k 变大会怎样影响回答质量？ |
+| q018 | 0.25 | False | retrieval_miss | RAG 中 prompt 的作用是什么？ |
 
 ### top_k=3
 

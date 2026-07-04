@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RAGBench-CN Top-k Comparison</title>
+  <title>RAGBench-CN Client Comparison</title>
   <style>body {
   color: #172033;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -78,19 +78,19 @@ th {
 <body>
   <main>
 
-    <h1>RAGBench-CN Top-k Comparison</h1>
+    <h1>RAGBench-CN Client Comparison</h1>
     <section>
       <h2>Summary</h2>
       <table>
         <thead>
           <tr><th>Run</th><th class="num">Citation Hit Rate</th><th class="num">Avg Keyword Recall</th><th class="num">Avg Precision@k</th><th class="num">Avg Recall@k</th><th class="num">Avg Latency ms</th><th>Failure Counts</th></tr>
         </thead>
-        <tbody><tr><td>top_k=1</td><td class="num">0.90</td><td class="num">0.41</td><td class="num">0.90</td><td class="num">0.90</td><td class="num">0.02</td><td>keyword_missing=8, ok=10, retrieval_miss=2</td></tr><tr><td>top_k=3</td><td class="num">1.00</td><td class="num">0.66</td><td class="num">0.82</td><td class="num">1.00</td><td class="num">0.02</td><td>keyword_missing=2, ok=18</td></tr><tr><td>top_k=5</td><td class="num">1.00</td><td class="num">0.76</td><td class="num">0.80</td><td class="num">1.00</td><td class="num">0.02</td><td>keyword_missing=1, ok=19</td></tr></tbody>
+        <tbody><tr><td>local-keyword</td><td class="num">1.00</td><td class="num">0.66</td><td class="num">0.82</td><td class="num">1.00</td><td class="num">0.03</td><td>keyword_missing=2, ok=18</td></tr></tbody>
       </table>
     </section>
     <section>
       <h2>Experiment Notes</h2>
-      <ul><li>Top-k controls how many retrieved chunks are returned.</li><li>In real RAG systems, larger top-k may improve recall but can add noise and latency.</li></ul>
+      <ul><li>Client comparison keeps the same questions and docs while changing retrieval strategy.</li><li>`local-keyword` ranks chunks by lexical overlap.</li><li>`local-embedding` ranks chunks by vector similarity and requires the optional embedding dependency.</li></ul>
     </section>
 
   </main>
