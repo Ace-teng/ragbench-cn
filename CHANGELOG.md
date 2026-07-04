@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.1.0 - Draft
+## v0.1.0 - 2026-07-04
 
 Initial working version of RAGBench-CN.
 
@@ -30,4 +30,3 @@ Initial working version of RAGBench-CN.
 - `keyword_recall` is a lightweight heuristic.
 - RAGFlow adapter still needs a real smoke test.
 - LLM-as-judge is not implemented.
-
