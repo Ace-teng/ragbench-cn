@@ -18,6 +18,7 @@
 - Optional local embedding retrieval baseline with `local-embedding`.
 - Client comparison mode for comparing retrieval clients.
 - Diagnosis and retrieval metrics in comparison report worst cases.
+- Checked-in keyword vs embedding client comparison report.
 
 ## v0.1.0 - 2026-07-04
 

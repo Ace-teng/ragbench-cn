@@ -94,7 +94,7 @@ class LocalEmbeddingClient:
         retrieved = [
             {
                 "doc": chunk.doc,
-                "score": round(score, 4),
+                "score": float(round(score, 4)),
                 "text": chunk.text,
             }
             for score, chunk in selected_items

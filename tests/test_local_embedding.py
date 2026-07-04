@@ -36,6 +36,7 @@ class LocalEmbeddingClientTest(unittest.TestCase):
 
             self.assertEqual(result["citations"], ["rag.md"])
             self.assertEqual(result["retrieved"][0]["doc"], "rag.md")
+            self.assertIsInstance(result["retrieved"][0]["score"], float)
             self.assertGreater(result["retrieved"][0]["score"], 0)
 
 
