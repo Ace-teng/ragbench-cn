@@ -3,6 +3,7 @@
     "questions": 20,
     "citation_hit_rate": 1.0,
     "average_keyword_recall": 0.7125,
+    "average_retrieval_precision_at_k": 1.0,
     "average_latency_ms": 0.02,
     "failure_counts": {
       "keyword_missing": 2,
@@ -18,6 +19,7 @@
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "keyword_missing"
     },
@@ -29,6 +31,7 @@
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.03,
       "failure_type": "keyword_missing"
     },
@@ -40,18 +43,8 @@
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
-      "latency_ms": 0.01,
-      "failure_type": "ok"
-    },
-    {
-      "id": "q018",
-      "question": "RAG 中 prompt 的作用是什么？",
-      "citations": [
-        "rag_basics.md"
-      ],
-      "keyword_recall": 0.5,
-      "citation_hit": true,
-      "latency_ms": 0.01,
+      "retrieval_precision_at_k": 1.0,
+      "latency_ms": 0.02,
       "failure_type": "ok"
     },
     {
@@ -62,6 +55,19 @@
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
+      "latency_ms": 0.02,
+      "failure_type": "ok"
+    },
+    {
+      "id": "q013",
+      "question": "RAG 的评估指标应该包含哪些方面？",
+      "citations": [
+        "rag_basics.md"
+      ],
+      "keyword_recall": 0.5,
+      "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     }
@@ -75,6 +81,7 @@
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.03,
       "failure_type": "keyword_missing"
     },
@@ -86,6 +93,7 @@
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.03,
       "failure_type": "ok"
     },
@@ -97,6 +105,7 @@
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -108,6 +117,7 @@
       ],
       "keyword_recall": 1.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -119,6 +129,7 @@
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -130,6 +141,7 @@
       ],
       "keyword_recall": 1.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -141,7 +153,8 @@
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
-      "latency_ms": 0.01,
+      "retrieval_precision_at_k": 1.0,
+      "latency_ms": 0.02,
       "failure_type": "ok"
     },
     {
@@ -152,6 +165,7 @@
       ],
       "keyword_recall": 1.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -163,6 +177,7 @@
       ],
       "keyword_recall": 1.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -174,6 +189,7 @@
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -185,6 +201,7 @@
       ],
       "keyword_recall": 0.25,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "keyword_missing"
     },
@@ -196,6 +213,7 @@
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -207,6 +225,7 @@
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -218,6 +237,7 @@
       ],
       "keyword_recall": 1.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -229,6 +249,7 @@
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -240,6 +261,7 @@
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -251,6 +273,7 @@
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -262,7 +285,8 @@
       ],
       "keyword_recall": 0.5,
       "citation_hit": true,
-      "latency_ms": 0.01,
+      "retrieval_precision_at_k": 1.0,
+      "latency_ms": 0.02,
       "failure_type": "ok"
     },
     {
@@ -273,6 +297,7 @@
       ],
       "keyword_recall": 1.0,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     },
@@ -284,6 +309,7 @@
       ],
       "keyword_recall": 0.75,
       "citation_hit": true,
+      "retrieval_precision_at_k": 1.0,
       "latency_ms": 0.02,
       "failure_type": "ok"
     }

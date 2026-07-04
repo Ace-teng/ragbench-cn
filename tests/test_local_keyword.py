@@ -27,6 +27,8 @@ class LocalKeywordClientTest(unittest.TestCase):
             client = LocalKeywordClient(docs_dir)
             result = client.ask("什么是 RAG 检索？")
             self.assertEqual(result["citations"], ["rag.md"])
+            self.assertEqual(result["retrieved"][0]["doc"], "rag.md")
+            self.assertGreater(result["retrieved"][0]["score"], 0)
             self.assertIn("检索", result["answer"])
 
     def test_client_supports_chunk_size(self) -> None:

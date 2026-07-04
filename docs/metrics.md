@@ -64,6 +64,33 @@ gold_doc 是否出现在 citations 中
 - 判断检索是否找到了正确来源。
 - 分析回答是否有事实支撑。
 
+## retrieval_precision_at_k
+
+含义：检索返回的 top-k chunks 中，有多少比例来自标准文档。
+
+计算方式：
+
+```text
+relevant retrieved chunks / retrieved chunks
+```
+
+例如 top-k 返回 3 个 chunk，其中 2 个来自 `gold_doc`，则：
+
+```text
+retrieval_precision_at_k = 2 / 3 = 0.67
+```
+
+用途：
+
+- 衡量返回结果里相关 chunk 的纯度。
+- 和 `citation_hit_rate` 互补：citation hit 只看有没有命中，precision@k 看返回结果里相关内容占比。
+- 分析 top-k 变大时是否引入更多噪声。
+
+局限：
+
+- 当前用 `gold_doc` 判断相关性，粒度仍然比较粗。
+- 如果一个文档内部有相关和不相关片段，文档级 gold label 不能完全区分。
+- 外部 client 需要返回 `retrieved` chunks 才能计算该指标。
 ## avg_latency
 
 含义：平均响应时间。
@@ -99,7 +126,6 @@ gold_doc 是否出现在 citations 中
 
 更完整的 RAG 评测还可以加入：
 
-- retrieval precision@k
 - answer faithfulness
 - answer relevance
 - LLM-as-judge

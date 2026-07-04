@@ -9,7 +9,7 @@ from typing import Any
 
 from ragbench.clients import LocalKeywordClient, MockRagClient, OpenAICompatibleClient, RagFlowClient
 from ragbench.html_report import render_eval_html
-from ragbench.metrics import citation_hit, classify_failure, keyword_recall
+from ragbench.metrics import citation_hit, classify_failure, keyword_recall, retrieval_precision_at_k
 
 
 def load_questions(path: Path) -> list[dict]:
@@ -22,8 +22,10 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
         result = client.ask(item["question"])
         answer = result.get("answer", "")
         citations = result.get("citations", [])
+        retrieved = result.get("retrieved", [])
         keyword_score = keyword_recall(answer, item.get("expected_keywords", []))
         citation_ok = citation_hit(citations, item.get("gold_doc"))
+        precision_at_k = retrieval_precision_at_k(retrieved, item.get("gold_doc")) if "retrieved" in result else None
         failure_type = classify_failure(keyword_score, citation_ok, answer)
         rows.append(
             {
@@ -33,6 +35,7 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
                 "citations": citations,
                 "keyword_recall": round(keyword_score, 2),
                 "citation_hit": citation_ok,
+                "retrieval_precision_at_k": round(precision_at_k, 2) if precision_at_k is not None else None,
                 "latency_ms": result.get("latency_ms", 0),
                 "failure_type": failure_type,
             }
@@ -43,6 +46,12 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
 def summarize(rows: list[dict]) -> dict:
     citation_rate = sum(1 for row in rows if row["citation_hit"]) / len(rows) if rows else 0
     keyword_avg = mean(row["keyword_recall"] for row in rows) if rows else 0
+    precision_values = [
+        row["retrieval_precision_at_k"]
+        for row in rows
+        if row.get("retrieval_precision_at_k") is not None
+    ]
+    precision_avg = mean(precision_values) if precision_values else None
     latency_avg = mean(row["latency_ms"] for row in rows) if rows else 0
     failure_counts: dict[str, int] = {}
     for row in rows:
@@ -52,6 +61,7 @@ def summarize(rows: list[dict]) -> dict:
         "questions": len(rows),
         "citation_hit_rate": round(citation_rate, 4),
         "average_keyword_recall": round(keyword_avg, 4),
+        "average_retrieval_precision_at_k": round(precision_avg, 4) if precision_avg is not None else None,
         "average_latency_ms": round(latency_avg, 2),
         "failure_counts": failure_counts,
     }
@@ -91,6 +101,12 @@ def render_report(rows: list[dict], client_name: str) -> str:
         f"- Questions: {summary['questions']}",
         f"- Citation hit rate: {summary['citation_hit_rate']:.2f}",
         f"- Average keyword recall: {summary['average_keyword_recall']:.2f}",
+        "- Average retrieval precision@k: "
+        + (
+            f"{summary['average_retrieval_precision_at_k']:.2f}"
+            if summary["average_retrieval_precision_at_k"] is not None
+            else "N/A"
+        ),
         f"- Average latency: {summary['average_latency_ms']:.2f} ms",
         "",
         "## Failure Types",
@@ -107,15 +123,20 @@ def render_report(rows: list[dict], client_name: str) -> str:
             "",
             "## Details",
             "",
-            "| ID | Keyword Recall | Citation Hit | Latency ms | Failure Type | Question |",
-            "| --- | ---: | --- | ---: | --- | --- |",
+            "| ID | Keyword Recall | Precision@k | Citation Hit | Latency ms | Failure Type | Question |",
+            "| --- | ---: | ---: | --- | ---: | --- | --- |",
         ]
     )
 
     for row in rows:
         lines.append(
-            "| {id} | {keyword_recall:.2f} | {citation_hit} | {latency_ms:.2f} | {failure_type} | {question} |".format(
-                **row
+            "| {id} | {keyword_recall:.2f} | {precision} | {citation_hit} | {latency_ms:.2f} | {failure_type} | {question} |".format(
+                precision=(
+                    f"{row['retrieval_precision_at_k']:.2f}"
+                    if row.get("retrieval_precision_at_k") is not None
+                    else "N/A"
+                ),
+                **row,
             )
         )
     lines.extend(

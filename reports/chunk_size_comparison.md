@@ -2,11 +2,11 @@
 
 ## Summary
 
-| Run | Citation Hit Rate | Avg Keyword Recall | Avg Latency ms | Failure Counts |
-| --- | ---: | ---: | ---: | --- |
-| chunk_size=120 | 1.00 | 0.66 | 0.03 | keyword_missing=3, ok=17 |
-| chunk_size=300 | 1.00 | 0.71 | 0.02 | keyword_missing=2, ok=18 |
-| chunk_size=600 | 1.00 | 0.71 | 0.03 | keyword_missing=2, ok=18 |
+| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Latency ms | Failure Counts |
+| --- | ---: | ---: | ---: | ---: | --- |
+| chunk_size=120 | 1.00 | 0.66 | 1.00 | 0.03 | keyword_missing=3, ok=17 |
+| chunk_size=300 | 1.00 | 0.71 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
+| chunk_size=600 | 1.00 | 0.71 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
 
 ## How To Read
 

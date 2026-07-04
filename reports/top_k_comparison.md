@@ -2,11 +2,11 @@
 
 ## Summary
 
-| Run | Citation Hit Rate | Avg Keyword Recall | Avg Latency ms | Failure Counts |
-| --- | ---: | ---: | ---: | --- |
-| top_k=1 | 1.00 | 0.41 | 0.02 | keyword_missing=9, ok=11 |
-| top_k=3 | 1.00 | 0.71 | 0.03 | keyword_missing=2, ok=18 |
-| top_k=5 | 1.00 | 0.79 | 0.03 | keyword_missing=1, ok=19 |
+| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Latency ms | Failure Counts |
+| --- | ---: | ---: | ---: | ---: | --- |
+| top_k=1 | 1.00 | 0.41 | 1.00 | 0.02 | keyword_missing=9, ok=11 |
+| top_k=3 | 1.00 | 0.71 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
+| top_k=5 | 1.00 | 0.79 | 1.00 | 0.02 | keyword_missing=1, ok=19 |
 
 ## How To Read
 

@@ -8,6 +8,7 @@
         "questions": 20,
         "citation_hit_rate": 1.0,
         "average_keyword_recall": 0.4125,
+        "average_retrieval_precision_at_k": 1.0,
         "average_latency_ms": 0.02,
         "failure_counts": {
           "keyword_missing": 9,
@@ -23,6 +24,7 @@
           ],
           "keyword_recall": 0.0,
           "citation_hit": true,
+          "retrieval_precision_at_k": 1.0,
           "latency_ms": 0.01,
           "failure_type": "keyword_missing"
         },
@@ -34,6 +36,7 @@
           ],
           "keyword_recall": 0.0,
           "citation_hit": true,
+          "retrieval_precision_at_k": 1.0,
           "latency_ms": 0.02,
           "failure_type": "keyword_missing"
         },
@@ -45,6 +48,7 @@
           ],
           "keyword_recall": 0.0,
           "citation_hit": true,
+          "retrieval_precision_at_k": 1.0,
           "latency_ms": 0.02,
           "failure_type": "keyword_missing"
         }
@@ -58,7 +62,8 @@
         "questions": 20,
         "citation_hit_rate": 1.0,
         "average_keyword_recall": 0.7125,
-        "average_latency_ms": 0.03,
+        "average_retrieval_precision_at_k": 1.0,
+        "average_latency_ms": 0.02,
         "failure_counts": {
           "keyword_missing": 2,
           "ok": 18
@@ -73,7 +78,8 @@
           ],
           "keyword_recall": 0.25,
           "citation_hit": true,
-          "latency_ms": 0.03,
+          "retrieval_precision_at_k": 1.0,
+          "latency_ms": 0.02,
           "failure_type": "keyword_missing"
         },
         {
@@ -84,7 +90,8 @@
           ],
           "keyword_recall": 0.25,
           "citation_hit": true,
-          "latency_ms": 0.04,
+          "retrieval_precision_at_k": 1.0,
+          "latency_ms": 0.02,
           "failure_type": "keyword_missing"
         },
         {
@@ -95,7 +102,8 @@
           ],
           "keyword_recall": 0.5,
           "citation_hit": true,
-          "latency_ms": 0.02,
+          "retrieval_precision_at_k": 1.0,
+          "latency_ms": 0.01,
           "failure_type": "ok"
         }
       ]
@@ -108,7 +116,8 @@
         "questions": 20,
         "citation_hit_rate": 1.0,
         "average_keyword_recall": 0.7875,
-        "average_latency_ms": 0.03,
+        "average_retrieval_precision_at_k": 1.0,
+        "average_latency_ms": 0.02,
         "failure_counts": {
           "ok": 19,
           "keyword_missing": 1
@@ -123,7 +132,8 @@
           ],
           "keyword_recall": 0.25,
           "citation_hit": true,
-          "latency_ms": 0.03,
+          "retrieval_precision_at_k": 1.0,
+          "latency_ms": 0.02,
           "failure_type": "keyword_missing"
         },
         {
@@ -134,7 +144,8 @@
           ],
           "keyword_recall": 0.5,
           "citation_hit": true,
-          "latency_ms": 0.02,
+          "retrieval_precision_at_k": 1.0,
+          "latency_ms": 0.01,
           "failure_type": "ok"
         },
         {
@@ -145,7 +156,8 @@
           ],
           "keyword_recall": 0.5,
           "citation_hit": true,
-          "latency_ms": 0.03,
+          "retrieval_precision_at_k": 1.0,
+          "latency_ms": 0.02,
           "failure_type": "ok"
         }
       ]

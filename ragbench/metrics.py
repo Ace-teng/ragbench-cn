@@ -14,6 +14,15 @@ def citation_hit(citations: list[str], gold_doc: str | None) -> bool:
     return any(gold_doc in citation for citation in citations)
 
 
+def retrieval_precision_at_k(retrieved: list[dict], gold_doc: str | None) -> float | None:
+    if not retrieved:
+        return None
+    if not gold_doc:
+        return 1.0
+    relevant_count = sum(1 for item in retrieved if gold_doc in str(item.get("doc", "")))
+    return relevant_count / len(retrieved)
+
+
 def classify_failure(keyword_score: float, citation_ok: bool, answer: str) -> str:
     if not answer.strip():
         return "empty_answer"
@@ -24,4 +33,3 @@ def classify_failure(keyword_score: float, citation_ok: bool, answer: str) -> st
     if keyword_score < 0.5:
         return "keyword_missing"
     return "ok"
-

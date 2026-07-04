@@ -6,7 +6,7 @@
 
 RAGBench-CN is a lightweight Chinese RAG evaluation toolkit.
 
-It evaluates knowledge-base QA systems with a question set and generates Markdown / JSON reports for keyword recall, citation hit rate, latency, failure types, and worst cases.
+It evaluates knowledge-base QA systems with a question set and generates Markdown / JSON reports for keyword recall, retrieval precision@k, citation hit rate, latency, failure types, and worst cases.
 
 中文简介：
 
@@ -31,6 +31,7 @@ RAGBench-CN does not rebuild a RAG platform. It evaluates outputs from RAGFlow, 
 - `local-keyword` client for local Markdown retrieval baseline
 - `openai-compatible` client for compatible `/chat/completions` services
 - `ragflow` client for RAGFlow non-streaming chat completion
+- Retrieval precision@k for clients that return retrieved chunks
 - Top-k comparison
 - Chunk size comparison
 - Worst case analysis
@@ -75,11 +76,11 @@ Generated examples are listed in [reports/README.md](reports/README.md).
 
 Top-k comparison on the local Markdown baseline:
 
-| Run | Citation Hit Rate | Avg Keyword Recall | Avg Latency ms | Failure Counts |
-| --- | ---: | ---: | ---: | --- |
-| top_k=1 | 1.00 | 0.41 | 0.02 | keyword_missing=9, ok=11 |
-| top_k=3 | 1.00 | 0.71 | 0.02 | keyword_missing=2, ok=18 |
-| top_k=5 | 1.00 | 0.79 | 0.02 | keyword_missing=1, ok=19 |
+| Run | Citation Hit Rate | Avg Keyword Recall | Avg Precision@k | Avg Latency ms | Failure Counts |
+| --- | ---: | ---: | ---: | ---: | --- |
+| top_k=1 | 1.00 | 0.41 | 1.00 | 0.02 | keyword_missing=9, ok=11 |
+| top_k=3 | 1.00 | 0.71 | 1.00 | 0.02 | keyword_missing=2, ok=18 |
+| top_k=5 | 1.00 | 0.79 | 1.00 | 0.02 | keyword_missing=1, ok=19 |
 
 Interpretation:
 

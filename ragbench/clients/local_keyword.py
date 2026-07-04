@@ -87,19 +87,30 @@ class LocalKeywordClient:
             key=lambda item: item[0],
             reverse=True,
         )
-        selected = [chunk for score, chunk in ranked[: self.top_k] if score > 0]
+        selected_items = [(score, chunk) for score, chunk in ranked[: self.top_k] if score > 0]
+        selected = [chunk for score, chunk in selected_items]
         if not selected:
             return {
                 "answer": "",
                 "citations": [],
+                "retrieved": [],
                 "latency_ms": round((time.perf_counter() - start) * 1000, 2),
             }
 
         answer = "\n\n".join(chunk.text for chunk in selected)
         citations = list(dict.fromkeys(chunk.doc for chunk in selected))
+        retrieved = [
+            {
+                "doc": chunk.doc,
+                "score": score,
+                "text": chunk.text,
+            }
+            for score, chunk in selected_items
+        ]
         return {
             "answer": answer,
             "citations": citations,
+            "retrieved": retrieved,
             "latency_ms": round((time.perf_counter() - start) * 1000, 2),
         }
 
