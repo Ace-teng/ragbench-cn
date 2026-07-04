@@ -27,7 +27,7 @@
 | --- | ---: | --- | --- | --- |
 | q004 | 0.00 | True | keyword_missing | embedding 在 RAG 系统中起什么作用？ |
 | q017 | 0.00 | True | keyword_missing | 为什么 RAG 系统需要失败 case 分析？ |
-| q018 | 0.25 | False | retrieval_miss | RAG 中 prompt 的作用是什么？ |
+| q006 | 0.25 | False | retrieval_miss | top-k 变大会怎样影响回答质量？ |
 
 ### top_k=3
 
@@ -35,7 +35,7 @@
 | --- | ---: | --- | --- | --- |
 | q001 | 0.25 | True | keyword_missing | RAG 的基本流程是什么？ |
 | q011 | 0.25 | True | keyword_missing | 如何判断一次 RAG 回答是检索失败？ |
-| q003 | 0.50 | True | ok | chunk size 过小会带来什么问题？ |
+| q007 | 0.50 | True | ok | rerank 的作用是什么？ |
 
 ### top_k=5
 

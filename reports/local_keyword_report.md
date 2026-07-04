@@ -8,7 +8,7 @@
 - Average keyword recall: 0.66
 - Average retrieval precision@k: 0.82
 - Average retrieval recall@k: 1.00
-- Average latency: 0.04 ms
+- Average latency: 0.03 ms
 
 ## Failure Types
 
@@ -21,26 +21,26 @@
 
 | ID | Keyword Recall | Precision@k | Recall@k | Citation Hit | Latency ms | Failure Type | Diagnosis | Question |
 | --- | ---: | ---: | ---: | --- | ---: | --- | --- | --- |
-| q001 | 0.25 | 1.00 | 1.00 | True | 0.06 | keyword_missing | keyword_missing: answer missed expected key concepts | RAG 的基本流程是什么？ |
-| q002 | 0.75 | 0.67 | 1.00 | True | 0.07 | ok | ok: answer passed the current lightweight checks | RAG 中 chunk size 过大会带来什么问题？ |
+| q001 | 0.25 | 1.00 | 1.00 | True | 0.04 | keyword_missing | keyword_missing: answer missed expected key concepts | RAG 的基本流程是什么？ |
+| q002 | 0.75 | 0.67 | 1.00 | True | 0.04 | ok | ok: answer passed the current lightweight checks | RAG 中 chunk size 过大会带来什么问题？ |
 | q003 | 0.50 | 0.33 | 1.00 | True | 0.03 | ok | noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks | chunk size 过小会带来什么问题？ |
-| q004 | 0.75 | 0.67 | 1.00 | True | 0.04 | ok | ok: answer passed the current lightweight checks | embedding 在 RAG 系统中起什么作用？ |
-| q005 | 0.75 | 1.00 | 1.00 | True | 0.06 | ok | ok: answer passed the current lightweight checks | 向量检索返回的 top-k 是什么意思？ |
+| q004 | 0.75 | 0.67 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | embedding 在 RAG 系统中起什么作用？ |
+| q005 | 0.75 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 向量检索返回的 top-k 是什么意思？ |
 | q006 | 0.75 | 0.33 | 1.00 | True | 0.03 | ok | noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks | top-k 变大会怎样影响回答质量？ |
 | q007 | 0.50 | 0.67 | 1.00 | True | 0.02 | ok | ok: answer passed the current lightweight checks | rerank 的作用是什么？ |
 | q008 | 1.00 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | RAG 为什么仍然可能出现幻觉？ |
-| q009 | 1.00 | 1.00 | 1.00 | True | 0.02 | ok | ok: answer passed the current lightweight checks | 引用命中率能说明什么？ |
-| q010 | 0.50 | 1.00 | 1.00 | True | 0.02 | ok | ok: answer passed the current lightweight checks | 关键词召回率有什么局限？ |
+| q009 | 1.00 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 引用命中率能说明什么？ |
+| q010 | 0.50 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 关键词召回率有什么局限？ |
 | q011 | 0.25 | 1.00 | 1.00 | True | 0.03 | keyword_missing | keyword_missing: answer missed expected key concepts | 如何判断一次 RAG 回答是检索失败？ |
 | q012 | 0.75 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 如何降低 RAG 系统的回答延迟？ |
-| q013 | 0.50 | 1.00 | 1.00 | True | 0.04 | ok | ok: answer passed the current lightweight checks | RAG 的评估指标应该包含哪些方面？ |
-| q014 | 1.00 | 1.00 | 1.00 | True | 0.08 | ok | ok: answer passed the current lightweight checks | 为什么不能只看大模型回答是否流畅？ |
-| q015 | 0.75 | 1.00 | 1.00 | True | 0.05 | ok | ok: answer passed the current lightweight checks | 文档切分时为什么要保留标题或元数据？ |
+| q013 | 0.50 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | RAG 的评估指标应该包含哪些方面？ |
+| q014 | 1.00 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 为什么不能只看大模型回答是否流畅？ |
+| q015 | 0.75 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 文档切分时为什么要保留标题或元数据？ |
 | q016 | 0.75 | 0.67 | 1.00 | True | 0.04 | ok | ok: answer passed the current lightweight checks | RAG 和直接把问题发给大模型有什么区别？ |
 | q017 | 0.50 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 为什么 RAG 系统需要失败 case 分析？ |
 | q018 | 0.50 | 0.67 | 1.00 | True | 0.02 | ok | ok: answer passed the current lightweight checks | RAG 中 prompt 的作用是什么？ |
-| q019 | 0.75 | 0.33 | 1.00 | True | 0.02 | ok | noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks | 什么情况下应该调整 chunk 策略？ |
-| q020 | 0.75 | 1.00 | 1.00 | True | 0.03 | ok | ok: answer passed the current lightweight checks | 一个可面试的 RAG 项目应该留下哪些证据？ |
+| q019 | 0.75 | 0.33 | 1.00 | True | 0.03 | ok | noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks | 什么情况下应该调整 chunk 策略？ |
+| q020 | 0.75 | 1.00 | 1.00 | True | 0.04 | ok | ok: answer passed the current lightweight checks | 一个可面试的 RAG 项目应该留下哪些证据？ |
 
 ## Worst Cases
 
@@ -49,8 +49,8 @@
 | q011 | 0.25 | 1.00 | 1.00 | True | keyword_missing | keyword_missing: answer missed expected key concepts | 如何判断一次 RAG 回答是检索失败？ |
 | q001 | 0.25 | 1.00 | 1.00 | True | keyword_missing | keyword_missing: answer missed expected key concepts | RAG 的基本流程是什么？ |
 | q007 | 0.50 | 0.67 | 1.00 | True | ok | ok: answer passed the current lightweight checks | rerank 的作用是什么？ |
-| q010 | 0.50 | 1.00 | 1.00 | True | ok | ok: answer passed the current lightweight checks | 关键词召回率有什么局限？ |
 | q018 | 0.50 | 0.67 | 1.00 | True | ok | ok: answer passed the current lightweight checks | RAG 中 prompt 的作用是什么？ |
+| q003 | 0.50 | 0.33 | 1.00 | True | ok | noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks | chunk size 过小会带来什么问题？ |
 
 ## Retrieved Chunks
 
@@ -78,14 +78,6 @@
 | 2 | rag_basics.md | 7 | embedding 的作用是把文本映射到向量空间，让语义相近的文本在向量空间中距离更近。向量检索并不是关键词匹配，它更关注语义相似度。用户问题和文档片段都可以被转换成向量，然后通过相似度计算找到候选片段。 |
 | 3 | retrieval_noise.md | 7 | 这份文档不应该作为 `rag_basics.md` 问题的标准引用来源。它的作用是帮助 precision@k 暴露检索结果中的噪声。 |
 
-### q010
-
-| Rank | Doc | Score | Text Preview |
-| ---: | --- | ---: | --- |
-| 1 | rag_basics.md | 11 | RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k |
-| 2 | rag_basics.md | 8 | RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检 |
-| 3 | rag_basics.md | 5 | embedding 的作用是把文本映射到向量空间，让语义相近的文本在向量空间中距离更近。向量检索并不是关键词匹配，它更关注语义相似度。用户问题和文档片段都可以被转换成向量，然后通过相似度计算找到候选片段。 |
-
 ### q018
 
 | Rank | Doc | Score | Text Preview |
@@ -93,6 +85,14 @@
 | 1 | retrieval_noise.md | 10 | 这份文档不应该作为 `rag_basics.md` 问题的标准引用来源。它的作用是帮助 precision@k 暴露检索结果中的噪声。 |
 | 2 | rag_basics.md | 8 | embedding 的作用是把文本映射到向量空间，让语义相近的文本在向量空间中距离更近。向量检索并不是关键词匹配，它更关注语义相似度。用户问题和文档片段都可以被转换成向量，然后通过相似度计算找到候选片段。 |
 | 3 | rag_basics.md | 7 | rerank 的作用是在向量检索之后重新排序候选片段。向量检索负责快速召回，rerank 更关注问题和候选片段之间的精细相关性。对于候选片段较多、相似文本较多、专业文档较复杂的场景，rerank 往往能提高最终上下文质量。 |
+
+### q003
+
+| Rank | Doc | Score | Text Preview |
+| ---: | --- | ---: | --- |
+| 1 | rag_basics.md | 8 | RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k |
+| 2 | retrieval_noise.md | 6 | 这份文档用于构造检索噪声。它包含 RAG、top-k、chunk size、上下文、延迟、检索、引用等词，但不是示例问题集的标准答案来源。 |
+| 3 | retrieval_noise.md | 6 | chunk size 过大时，一个片段可能同时包含多个主题；chunk size 过小时，片段可能缺少必要上下文。两种情况都可能影响最终回答质量。 |
 
 
 ## Notes

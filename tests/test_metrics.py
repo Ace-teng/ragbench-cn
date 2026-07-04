@@ -5,6 +5,7 @@ from ragbench.metrics import (
     citation_hit,
     classify_failure,
     keyword_recall,
+    normalize_gold_docs,
     retrieval_precision_at_k,
     retrieval_recall_at_k,
 )
@@ -25,6 +26,13 @@ class MetricsTest(unittest.TestCase):
     def test_citation_hit_fails_when_gold_doc_missing(self) -> None:
         self.assertFalse(citation_hit(["docs/other.md"], "rag_basics.md"))
 
+    def test_normalize_gold_docs_accepts_single_or_multiple_docs(self) -> None:
+        self.assertEqual(normalize_gold_docs("a.md"), ["a.md"])
+        self.assertEqual(normalize_gold_docs(["a.md", "b.md"]), ["a.md", "b.md"])
+
+    def test_citation_hit_accepts_multiple_gold_docs(self) -> None:
+        self.assertTrue(citation_hit(["docs/b.md"], ["a.md", "b.md"]))
+
     def test_retrieval_precision_at_k_counts_relevant_chunks(self) -> None:
         retrieved = [
             {"doc": "rag_basics.md"},
@@ -36,6 +44,14 @@ class MetricsTest(unittest.TestCase):
     def test_retrieval_precision_at_k_returns_none_without_retrieved_chunks(self) -> None:
         self.assertIsNone(retrieval_precision_at_k([], "rag_basics.md"))
 
+    def test_retrieval_precision_at_k_accepts_multiple_gold_docs(self) -> None:
+        retrieved = [
+            {"doc": "a.md"},
+            {"doc": "noise.md"},
+            {"doc": "b.md"},
+        ]
+        self.assertEqual(retrieval_precision_at_k(retrieved, ["a.md", "b.md"]), 2 / 3)
+
     def test_retrieval_recall_at_k_detects_gold_doc(self) -> None:
         retrieved = [
             {"doc": "other.md"},
@@ -46,6 +62,10 @@ class MetricsTest(unittest.TestCase):
     def test_retrieval_recall_at_k_misses_gold_doc(self) -> None:
         retrieved = [{"doc": "other.md"}]
         self.assertEqual(retrieval_recall_at_k(retrieved, "rag_basics.md"), 0.0)
+
+    def test_retrieval_recall_at_k_accepts_multiple_gold_docs(self) -> None:
+        retrieved = [{"doc": "a.md"}, {"doc": "noise.md"}]
+        self.assertEqual(retrieval_recall_at_k(retrieved, ["a.md", "b.md"]), 0.5)
 
     def test_classify_failure_retrieval_miss(self) -> None:
         self.assertEqual(classify_failure(0.25, False, "partial answer"), "retrieval_miss")

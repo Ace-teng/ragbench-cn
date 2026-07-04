@@ -21,6 +21,9 @@
         {
           "id": "q003",
           "question": "chunk size 过小会带来什么问题？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
           "citations": [
             "retrieval_noise.md",
             "rag_basics.md"
@@ -46,44 +49,16 @@
               "text_preview": "、chunk size、rerank 等参数变化带来的影响。"
             }
           ],
-          "latency_ms": 0.02,
+          "latency_ms": 0.03,
           "failure_type": "keyword_missing",
           "diagnosis": "noisy_retrieval: gold source was retrieved but top-k contains many non-gold chunks"
         },
         {
-          "id": "q001",
-          "question": "RAG 的基本流程是什么？",
-          "citations": [
-            "rag_basics.md"
-          ],
-          "keyword_recall": 0.25,
-          "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "retrieval_recall_at_k": 1.0,
-          "retrieved": [
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
-            },
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "评估 RAG 不能只看答案是否流畅。一个回答可能语言自然，但没有引用正确文档，或者覆盖了错误事实。更可靠的评估应包含多个维度：检索是否命中标准文档，回答是否覆盖关键概念，引用是否存在，响应延迟是否可接受，以及失败 case 属于检索失败、引"
-            },
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
-            }
-          ],
-          "latency_ms": 0.03,
-          "failure_type": "keyword_missing",
-          "diagnosis": "keyword_missing: answer missed expected key concepts"
-        },
-        {
           "id": "q011",
           "question": "如何判断一次 RAG 回答是检索失败？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
           "citations": [
             "rag_basics.md"
           ],
@@ -111,6 +86,40 @@
           "latency_ms": 0.03,
           "failure_type": "keyword_missing",
           "diagnosis": "keyword_missing: answer missed expected key concepts"
+        },
+        {
+          "id": "q017",
+          "question": "为什么 RAG 系统需要失败 case 分析？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "retrieval_precision_at_k": 1.0,
+          "retrieval_recall_at_k": 1.0,
+          "retrieved": [
+            {
+              "doc": "rag_basics.md",
+              "score": 11,
+              "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 9,
+              "text_preview": "一个可面试的 RAG 项目需要留下清晰证据：运行命令、环境配置、测试问题集、评估报告、失败 case、源码阅读笔记和参数对比结果。面试时要能分清平台已有能力和自己的工作：RAGFlow 等平台负责知识库和问答链路，评测工具负责问题集、指标、"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 8,
+              "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
+            }
+          ],
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing",
+          "diagnosis": "keyword_missing: answer missed expected key concepts"
         }
       ]
     },
@@ -125,7 +134,7 @@
         "average_keyword_recall": 0.6625,
         "average_retrieval_precision_at_k": 0.817,
         "average_retrieval_recall_at_k": 1.0,
-        "average_latency_ms": 0.02,
+        "average_latency_ms": 0.03,
         "failure_counts": {
           "keyword_missing": 2,
           "ok": 18
@@ -133,39 +142,11 @@
       },
       "worst_cases": [
         {
-          "id": "q001",
-          "question": "RAG 的基本流程是什么？",
-          "citations": [
-            "rag_basics.md"
-          ],
-          "keyword_recall": 0.25,
-          "citation_hit": true,
-          "retrieval_precision_at_k": 1.0,
-          "retrieval_recall_at_k": 1.0,
-          "retrieved": [
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
-            },
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "评估 RAG 不能只看答案是否流畅。一个回答可能语言自然，但没有引用正确文档，或者覆盖了错误事实。更可靠的评估应包含多个维度：检索是否命中标准文档，回答是否覆盖关键概念，引用是否存在，响应延迟是否可接受，以及失败 case 属于检索失败、引"
-            },
-            {
-              "doc": "rag_basics.md",
-              "score": 4,
-              "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
-            }
-          ],
-          "latency_ms": 0.02,
-          "failure_type": "keyword_missing",
-          "diagnosis": "keyword_missing: answer missed expected key concepts"
-        },
-        {
           "id": "q011",
           "question": "如何判断一次 RAG 回答是检索失败？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
           "citations": [
             "rag_basics.md"
           ],
@@ -190,13 +171,50 @@
               "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
             }
           ],
-          "latency_ms": 0.02,
+          "latency_ms": 0.03,
+          "failure_type": "keyword_missing",
+          "diagnosis": "keyword_missing: answer missed expected key concepts"
+        },
+        {
+          "id": "q001",
+          "question": "RAG 的基本流程是什么？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
+          "citations": [
+            "rag_basics.md"
+          ],
+          "keyword_recall": 0.25,
+          "citation_hit": true,
+          "retrieval_precision_at_k": 1.0,
+          "retrieval_recall_at_k": 1.0,
+          "retrieved": [
+            {
+              "doc": "rag_basics.md",
+              "score": 4,
+              "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 4,
+              "text_preview": "评估 RAG 不能只看答案是否流畅。一个回答可能语言自然，但没有引用正确文档，或者覆盖了错误事实。更可靠的评估应包含多个维度：检索是否命中标准文档，回答是否覆盖关键概念，引用是否存在，响应延迟是否可接受，以及失败 case 属于检索失败、引"
+            },
+            {
+              "doc": "rag_basics.md",
+              "score": 4,
+              "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
+            }
+          ],
+          "latency_ms": 0.04,
           "failure_type": "keyword_missing",
           "diagnosis": "keyword_missing: answer missed expected key concepts"
         },
         {
           "id": "q003",
           "question": "chunk size 过小会带来什么问题？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
           "citations": [
             "rag_basics.md",
             "retrieval_noise.md"
@@ -239,7 +257,7 @@
         "average_keyword_recall": 0.6625,
         "average_retrieval_precision_at_k": 0.817,
         "average_retrieval_recall_at_k": 1.0,
-        "average_latency_ms": 0.02,
+        "average_latency_ms": 0.03,
         "failure_counts": {
           "keyword_missing": 2,
           "ok": 18
@@ -249,6 +267,9 @@
         {
           "id": "q001",
           "question": "RAG 的基本流程是什么？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
           "citations": [
             "rag_basics.md"
           ],
@@ -273,13 +294,16 @@
               "text_preview": "RAGBench-CN 的第一版评测思路是用问题集驱动测试。每个问题给出期望关键词和标准文档，脚本调用 RAG 系统问答接口后，统计关键词召回率、引用命中率、平均延迟和失败类型。这个方法不完美，但足够作为轻量评测起点，也适合比较 top-k"
             }
           ],
-          "latency_ms": 0.02,
+          "latency_ms": 0.03,
           "failure_type": "keyword_missing",
           "diagnosis": "keyword_missing: answer missed expected key concepts"
         },
         {
           "id": "q011",
           "question": "如何判断一次 RAG 回答是检索失败？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
           "citations": [
             "rag_basics.md"
           ],
@@ -304,13 +328,16 @@
               "text_preview": "RAG 可以减少幻觉，但不能完全消除幻觉。常见原因包括：检索没有召回正确文档，召回片段缺少关键上下文，prompt 没有限制模型必须基于引用回答，或者模型在上下文不足时自行补全事实。因此 RAG 系统需要记录引用来源，并分析回答是否真的被检"
             }
           ],
-          "latency_ms": 0.02,
+          "latency_ms": 0.03,
           "failure_type": "keyword_missing",
           "diagnosis": "keyword_missing: answer missed expected key concepts"
         },
         {
           "id": "q003",
           "question": "chunk size 过小会带来什么问题？",
+          "gold_docs": [
+            "rag_basics.md"
+          ],
           "citations": [
             "rag_basics.md",
             "retrieval_noise.md"

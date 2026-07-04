@@ -14,6 +14,7 @@
 - Retrieval noise example document for precision@k experiments.
 - Retrieved chunk previews in JSON and Markdown reports.
 - Per-question diagnosis text for failure analysis.
+- Multiple expected source documents through `gold_docs`.
 
 ## v0.1.0 - 2026-07-04
 

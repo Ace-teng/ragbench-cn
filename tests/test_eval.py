@@ -40,9 +40,27 @@ class EvalTest(unittest.TestCase):
 
         self.assertEqual(rows[0]["retrieval_precision_at_k"], 0.5)
         self.assertEqual(rows[0]["retrieval_recall_at_k"], 1.0)
+        self.assertEqual(rows[0]["gold_docs"], ["rag.md"])
         self.assertEqual(rows[0]["retrieved"][0]["doc"], "rag.md")
         self.assertIn("text_preview", rows[0]["retrieved"][0])
         self.assertEqual(rows[0]["diagnosis"], "ok: answer passed the current lightweight checks")
+
+    def test_evaluate_accepts_multiple_gold_docs(self) -> None:
+        rows = evaluate(
+            [
+                {
+                    "id": "q001",
+                    "question": "What is RAG?",
+                    "expected_keywords": ["RAG", "retrieval"],
+                    "gold_docs": ["rag.md", "missing.md"],
+                }
+            ],
+            FakeClient(),
+        )
+
+        self.assertEqual(rows[0]["gold_docs"], ["rag.md", "missing.md"])
+        self.assertEqual(rows[0]["retrieval_precision_at_k"], 0.5)
+        self.assertEqual(rows[0]["retrieval_recall_at_k"], 0.5)
 
     def test_diagnose_result_marks_retrieval_miss(self) -> None:
         self.assertEqual(

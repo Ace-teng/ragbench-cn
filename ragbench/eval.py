@@ -13,6 +13,7 @@ from ragbench.metrics import (
     citation_hit,
     classify_failure,
     keyword_recall,
+    normalize_gold_docs,
     retrieval_precision_at_k,
     retrieval_recall_at_k,
 )
@@ -29,10 +30,11 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
         answer = result.get("answer", "")
         citations = result.get("citations", [])
         retrieved = result.get("retrieved", [])
+        gold_docs = question_gold_docs(item)
         keyword_score = keyword_recall(answer, item.get("expected_keywords", []))
-        citation_ok = citation_hit(citations, item.get("gold_doc"))
-        precision_at_k = retrieval_precision_at_k(retrieved, item.get("gold_doc")) if "retrieved" in result else None
-        recall_at_k = retrieval_recall_at_k(retrieved, item.get("gold_doc")) if "retrieved" in result else None
+        citation_ok = citation_hit(citations, gold_docs)
+        precision_at_k = retrieval_precision_at_k(retrieved, gold_docs) if "retrieved" in result else None
+        recall_at_k = retrieval_recall_at_k(retrieved, gold_docs) if "retrieved" in result else None
         failure_type = classify_failure(keyword_score, citation_ok, answer)
         diagnosis = diagnose_result(
             keyword_score=keyword_score,
@@ -45,6 +47,7 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
             {
                 "id": item["id"],
                 "question": item["question"],
+                "gold_docs": gold_docs,
                 "answer": answer,
                 "citations": citations,
                 "keyword_recall": round(keyword_score, 2),
@@ -58,6 +61,12 @@ def evaluate(questions: list[dict], client: Any) -> list[dict]:
             }
         )
     return rows
+
+
+def question_gold_docs(item: dict) -> list[str]:
+    if "gold_docs" in item:
+        return normalize_gold_docs(item.get("gold_docs"))
+    return normalize_gold_docs(item.get("gold_doc"))
 
 
 def diagnose_result(

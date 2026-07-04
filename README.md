@@ -99,6 +99,12 @@ Interpretation:
     "question": "RAG 中 chunk size 过大会带来什么问题？",
     "expected_keywords": ["噪声", "上下文", "召回", "精度"],
     "gold_doc": "rag_basics.md"
+  },
+  {
+    "id": "q002",
+    "question": "A question with multiple acceptable source documents",
+    "expected_keywords": ["retrieval", "citation"],
+    "gold_docs": ["rag_basics.md", "retrieval_noise.md"]
   }
 ]
 ```
@@ -109,6 +115,7 @@ Fields:
 - `question`: user question
 - `expected_keywords`: key concepts expected in the answer
 - `gold_doc`: expected source document
+- `gold_docs`: optional list of expected source documents. Use this when one question can be supported by multiple sources.
 
 ## Metrics
 
@@ -116,8 +123,11 @@ Fields:
 | --- | --- |
 | `citation_hit_rate` | Whether citations hit expected source documents |
 | `keyword_recall` | How many expected keywords are covered |
+| `retrieval_precision_at_k` | How many retrieved chunks come from expected source documents |
+| `retrieval_recall_at_k` | How many expected source documents appear in retrieved chunks |
 | `average_latency_ms` | Average response latency |
 | `failure_type` | `retrieval_miss`, `citation_missing`, `keyword_missing`, etc. |
+| `diagnosis` | Human-readable explanation of the likely issue |
 | `worst_cases` | The most important failed or weak cases to inspect |
 
 See [docs/metrics.md](docs/metrics.md) for details.
